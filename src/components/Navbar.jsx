@@ -85,19 +85,24 @@ export default function Navbar() {
                 background: '#1A1714',
                 border: '1px solid #2A2720',
                 borderRadius: '4px',
-                padding: '8px 14px',
+                padding: '6px 14px',
                 cursor: 'pointer',
                 color: '#F0EBE0',
               }}>
+                {/* Avatar — shows uploaded photo or initial */}
                 <div style={{
-                  width: 24, height: 24, borderRadius: '50%',
+                  width: 28, height: 28, borderRadius: '50%',
                   background: '#C9A84C',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 11, fontWeight: 600, color: '#000',
+                  overflow: 'hidden', flexShrink: 0,
                 }}>
-                  {currentUser.name?.[0]?.toUpperCase()}
+                  {currentUser.avatar
+                    ? <img src={currentUser.avatar} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : currentUser.name?.[0]?.toUpperCase()
+                  }
                 </div>
-                <span style={{ fontSize: 13 }}>{currentUser.name}</span>
+                <span style={{ fontSize: 13, color: '#F0EBE0' }}>{currentUser.name}</span>
                 <span style={{ fontSize: 10, color: '#8A8070' }}>▾</span>
               </button>
 
@@ -131,7 +136,6 @@ export default function Navbar() {
             </div>
 
           ) : (
-            // Not logged in
             <div style={{ display: 'flex', gap: '10px' }}>
               <Link to="/login" style={{
                 fontSize: 13, color: '#8A8070', textDecoration: 'none',
