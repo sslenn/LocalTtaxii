@@ -16,6 +16,7 @@ export default function Profile() {
   const [saved,  setSaved]  = useState(false);
   const [avatar, setAvatar] = useState(currentUser?.avatar || null);
   const fileRef = useRef(null);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
   function handleAvatarChange(e) {
     const file = e.target.files?.[0];
@@ -38,13 +39,23 @@ export default function Profile() {
     : 'Member';
 
   function handleSave() {
-    if (!name.trim())  { alert('Name cannot be empty.'); return; }
-    if (!email.trim()) { alert('Email cannot be empty.'); return; }
-    updateProfile({ name: name.trim(), phone: phone.trim(), email: email.trim() });
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
-    alert('Profile updated successfully!');
+  if (!name.trim()) {
+    toast('Name cannot be empty.', 'error');
+    return;
   }
+  if (!email.trim()) {
+    toast('Email cannot be empty.', 'error');
+    return;
+  }
+  if (!emailRegex.test(email.trim())) {
+    toast('Please enter a valid email address (must include @).', 'error');
+    return;
+  }
+  updateProfile({ name: name.trim(), phone: phone.trim(), email: email.trim() });
+  setSaved(true);
+  setTimeout(() => setSaved(false), 2000);
+  toast('Profile updated successfully!', 'success'); 
+}
 
   return (
     <div style={{ minHeight: '100vh', background: '#0e0d07', color: '#e8e0c8', fontFamily: 'Georgia, serif' }}>
@@ -149,10 +160,26 @@ export default function Profile() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@email.com"
-                style={{ width: '100%', background: '#0e0d07', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '10px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box' }}
+                style={{
+                  width: '100%',
+                  background: '#0e0d07',
+                  border: `1px solid ${email && !emailRegex.test(email) ? '#c0392b' : '#2a2810'}`, // ← REPLACE the border line with this
+                  color: '#e8e0c8',
+                  fontSize: 13,
+                  padding: '10px 14px',
+                  outline: 'none',
+                  fontFamily: 'Arial,sans-serif',
+                  boxSizing: 'border-box',
+                  transition: 'border-color 0.2s',
+                }}
               />
+              {email && !emailRegex.test(email) && (
+                <p style={{ color: '#c0392b', fontSize: 10, margin: '4px 0 0', fontFamily: 'Arial,sans-serif', letterSpacing: '0.5px' }}>
+                  Must include @ and a domain (e.g. you@email.com)
+                </p>
+              )}
             </div>
-          </div>
+          </div> 
 
           {/* Save button */}
           <button
