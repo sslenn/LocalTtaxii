@@ -33,14 +33,14 @@ function AdminLayout({ children }) {
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <AdminSidebar />
-      <div style={{ marginLeft: 240, flex: 1, padding: '48px 32px' }}>
+      <div style={{ marginLeft: 240, flex: 1}}>
         {children}
       </div>
     </div>
   )
 }
 
-// ── App ───────────────────────────────────────────────────────────────────────
+// ── App ────────────────────────────────────────────── ─────────────────────────
 export default function App() {
   return (
     <BrowserRouter>
