@@ -182,7 +182,7 @@ export default function Home() {
         </Link>
       </section>
 
-      <Footer />
+    
     </div>
   )
 }

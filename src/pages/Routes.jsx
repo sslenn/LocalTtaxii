@@ -14,6 +14,7 @@ export default function Routes() {
 
   const [routes, setRoutes] = useState([])
 
+  // saving time and improving code readability by seeding data and fetching routes in a single useEffect
   useEffect(() => {
     seedData()
     const data = getRoutes() || []

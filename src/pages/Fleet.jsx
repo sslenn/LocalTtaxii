@@ -149,7 +149,6 @@ export default function Fleet() {
         ))}
       </section>
 
-      <Footer />
     </div>
   )
 }
