@@ -1,9 +1,9 @@
 export const initialVehicles = [
-  { id: 'v1', name: 'SUV', model: 'Toyota Fortuner', seats: 7, luggage: 3, type: 'Standard', emoji: '🚙', price_tag: '$79+', available: true, description: 'Reliable and spacious SUV perfect for group travel across Cambodia.' },
-  { id: 'v2', name: 'Starex', model: 'Hyundai Starex', seats: 10, luggage: 5, type: 'Van', emoji: '🚐', price_tag: '$89+', available: true, description: 'Large capacity van ideal for families and groups with lots of luggage.' },
-  { id: 'v3', name: 'Alphard', model: 'Toyota Alphard', seats: 7, luggage: 4, type: 'Premium', emoji: '🚗', price_tag: '$99+', available: true, description: 'Premium MPV delivering first-class comfort for executive transfers.' },
-  { id: 'v4', name: 'Alphard 2012', model: 'Toyota Alphard 2012', seats: 7, luggage: 4, type: 'Business', emoji: '🚙', price_tag: '$109+', available: true, description: 'Business class travel with refined comfort and ample space.' },
-  { id: 'v5', name: 'VIP Alphard 2020', model: 'Toyota Alphard 2020', seats: 7, luggage: 4, type: 'VIP', emoji: '🏆', price_tag: '$189+', available: true, description: 'Our flagship VIP vehicle with ultra-luxury interior and privacy screens.' },
+  { id: 'v1', name: 'SUV',              model: 'Toyota Fortuner',     seats: 7,  luggage: 3, type: 'Standard', emoji: '🚙', price_tag: '$79+', available:  true,  description: 'Reliable and spacious SUV perfect for group travel across Cambodia.' },
+  { id: 'v2', name: 'Starex',           model: 'Hyundai Starex',      seats: 10, luggage: 5, type: 'Van',      emoji: '🚐', price_tag: '$89+', available:  true,  description: 'Large capacity van ideal for families and groups with lots of luggage.' },
+  { id: 'v3', name: 'Alphard',          model: 'Toyota Alphard',      seats: 7,  luggage: 4, type: 'Premium',  emoji: '🚗', price_tag: '$99+', available:  true,  description: 'Premium MPV delivering first-class comfort for executive transfers.' },
+  { id: 'v4', name: 'Alphard 2012',     model: 'Toyota Alphard 2012', seats: 7,  luggage: 4, type: 'Business', emoji: '🚙', price_tag: '$109+', available: true, description: 'Business class travel with refined comfort and ample space.' },
+  { id: 'v5', name: 'VIP Alphard 2020', model: 'Toyota Alphard 2020', seats: 7,  luggage: 4, type: 'VIP',      emoji: '🏆', price_tag: '$189+', available: true, description: 'Our flagship VIP vehicle with ultra-luxury interior and privacy screens.' },
 ]
 
 export const initialRoutes = [
@@ -21,15 +21,12 @@ export const initialRoutes = [
 ]
 
 export const initialUsers = [
-  {
-    id: 'admin1',
-    name: 'Admin',
-    email: 'admin@localttaxi.com',
-    password: 'admin123',
-    phone: '012000000',
-    role: 'admin',
-    createdAt: new Date().toISOString(),
-  },
+  { id: 'admin1', name: 'Admin', email: 'admin@localttaxi.com', password: 'admin123',    phone: '+855 12 000 000', role: 'admin',    createdAt: new Date('2024-01-01').toISOString() },
+  { id: 'u1',     name: 'User1', email: 'user1@example.com',    password: 'password123', phone: '+855 17 234 567', role: 'customer', createdAt: new Date('2024-03-10').toISOString() },
+  { id: 'u2',     name: 'User2', email: 'user2@example.com',    password: 'password123', phone: '+855 89 526 951', role: 'customer', createdAt: new Date('2024-04-05').toISOString() },
+  { id: 'u3',     name: 'User3', email: 'user3@example.com',    password: 'password123', phone: '+855 77 312 456', role: 'customer', createdAt: new Date('2024-03-01').toISOString() },
+  { id: 'u4',     name: 'User4', email: 'user4@example.com',    password: 'password123', phone: '+855 96 145 788', role: 'customer', createdAt: new Date('2024-02-20').toISOString() },
+  { id: 'u5',     name: 'User5', email: 'user5@example.com',    password: 'password123', phone: '+855 11 987 654', role: 'customer', createdAt: new Date('2024-04-15').toISOString() },
 ]
 
 export const initialBookings = []
