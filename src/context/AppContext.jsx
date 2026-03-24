@@ -145,13 +145,15 @@ const SEED_ROUTES = [
   },
 ];
 
-const SEED_ADMIN = {
-  id: "admin1",
-  name: "Admin",
-  email: "admin@localttaxi.com",
-  password: "admin123",
-  role: "admin",
-};
+// ── Seed Users ────────────────────────────────────────────────────────────────
+const SEED_USERS = [
+  { id: 'admin1', name: 'Admin',        email: 'admin@localttaxi.com', password: 'admin123',    phone: '+855 12 000 000', role: 'admin',    createdAt: new Date('2024-01-01').toISOString() },
+  { id: 'u1',     name: 'User1', email: 'user1@example.com',   password: 'password123', phone: '+855 17 234 567', role: 'customer', createdAt: new Date('2024-03-10').toISOString() },
+  { id: 'u2',     name: 'User2', email: 'user2@example.com',   password: 'password123', phone: '+855 89 526 951', role: 'customer', createdAt: new Date('2024-04-05').toISOString() },
+  { id: 'u3',     name: 'User3', email: 'user3@example.com',   password: 'password123', phone: '+855 77 312 456', role: 'customer', createdAt: new Date('2024-03-01').toISOString() },
+  { id: 'u4',     name: 'User4', email: 'user4@example.com',   password: 'password123', phone: '+855 96 145 788', role: 'customer', createdAt: new Date('2024-02-20').toISOString() },
+  { id: 'u5',     name: 'User5', email: 'user5@example.com',   password: 'password123', phone: '+855 11 987 654', role: 'customer', createdAt: new Date('2024-04-15').toISOString() },
+];
 
 // ── localStorage helpers ─────────────────────────────────────────────────────
 const ls = {
@@ -174,7 +176,7 @@ const ls = {
 const seed = () => {
   if (!ls.get("tt_vehicles")) ls.set("tt_vehicles", SEED_VEHICLES);
   if (!ls.get("tt_routes")) ls.set("tt_routes", SEED_ROUTES);
-  if (!ls.get("tt_users")) ls.set("tt_users", [SEED_ADMIN]);
+  if (!ls.get('tt_users')) ls.set('tt_users', SEED_USERS);
   if (!ls.get("tt_bookings")) ls.set("tt_bookings", []);
 };
 
