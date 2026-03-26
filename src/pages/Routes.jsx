@@ -1,6 +1,7 @@
 import { getRoutes, seedData } from '../utils/storage'
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
+import { useApp } from '../context/AppContext'
 
 const VEHICLE_COLS = [
   { label: 'SUV', key: 'v1' },
@@ -10,17 +11,13 @@ const VEHICLE_COLS = [
   { label: 'VIP / Alphard 2020', key: 'v5' }
 ]
 
+
 export default function Routes() {
 
-  const [routes, setRoutes] = useState([])
+  
+  const { routes } = useApp()
 
   // saving time and improving code readability by seeding data and fetching routes in a single useEffect
-  useEffect(() => {
-    seedData()
-    const data = getRoutes() || []
-    setRoutes(data)
-  }, [])
-
   return (
     <div style={{ paddingTop: '72px', minHeight: '100vh', background: '#0b0b0b' }}>
 
