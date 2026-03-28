@@ -1,9 +1,9 @@
 export const initialVehicles = [
-  { id: 'v1', name: 'SUV',              model: 'Toyota Fortuner',     seats: 7,  luggage: 3, type: 'Standard', emoji: '🚙', price_tag: '$79+', available:  true,  description: 'Reliable and spacious SUV perfect for group travel across Cambodia.' },
-  { id: 'v2', name: 'Starex',           model: 'Hyundai Starex',      seats: 10, luggage: 5, type: 'Van',      emoji: '🚐', price_tag: '$89+', available:  true,  description: 'Large capacity van ideal for families and groups with lots of luggage.' },
-  { id: 'v3', name: 'Alphard',          model: 'Toyota Alphard',      seats: 7,  luggage: 4, type: 'Premium',  emoji: '🚗', price_tag: '$99+', available:  true,  description: 'Premium MPV delivering first-class comfort for executive transfers.' },
-  { id: 'v4', name: 'Alphard 2012',     model: 'Toyota Alphard 2012', seats: 7,  luggage: 4, type: 'Business', emoji: '🚙', price_tag: '$109+', available: true, description: 'Business class travel with refined comfort and ample space.' },
-  { id: 'v5', name: 'VIP Alphard 2020', model: 'Toyota Alphard 2020', seats: 7,  luggage: 4, type: 'VIP',      emoji: '🏆', price_tag: '$189+', available: true, description: 'Our flagship VIP vehicle with ultra-luxury interior and privacy screens.' },
+  {id: "v1", name: "SUV",              model: "Toyota Fortuner",     seats: 7,  luggage: 3, type: "Standard", image: "/src/assets/SUV.png",         price_tag: "$79+",  available: true, description: "Reliable and spacious SUV perfect for group travel across Cambodia.",},
+  {id: "v2", name: "Starex",           model: "Hyundai Starex",      seats: 10, luggage: 5, type: "Van",      image: "/src/assets/starex.png",      price_tag: "$89+",  available: true, description: "Large capacity van ideal for families and groups with lots of luggage.",},
+  {id: "v3", name: "Alphard",          model: "Toyota Alphard",      seats: 7,  luggage: 4, type: "Premium",  image: "/src/assets/alphard.png",     price_tag: "$99+",  available: true, description: "Premium MPV delivering first-class comfort for executive transfers.",},
+  {id: "v4", name: "Alphard 2012",     model: "Toyota Alphard 2012", seats: 7,  luggage: 4, type: "Business", image: "/src/assets/alphard2012.png", price_tag: "$109+", available: true, description: "Business class travel with refined comfort and ample space.",},
+  {id: "v5", name: "VIP Alphard 2020", model: "Toyota Alphard 2020", seats: 7,  luggage: 4, type: "VIP",      image: "/src/assets/alphard2020.png", price_tag: "$189+", available: true, description: "Our flagship VIP vehicle with ultra-luxury interior and privacy screens.",},
 ]
 
 export const initialRoutes = [

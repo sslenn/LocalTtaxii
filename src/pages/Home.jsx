@@ -79,9 +79,9 @@ export default function Home() {
           gap: '32px',
         }}>
           {[
-            { icon: '💰', title: 'Fixed Pricing',    sub: 'No hidden fees or surprises' },
+            { icon: '💳', title: 'Fixed Pricing',    sub: 'No hidden fees or surprises' },
             { icon: '🛡️', title: 'Safe & Verified',  sub: 'Professional licensed drivers' },
-            { icon: '🚗', title: '5 Vehicle Classes', sub: 'SUV to VIP Alphard' },
+            { icon: '🚖', title: '5 Vehicle Classes', sub: 'SUV to VIP Alphard' },
             { icon: '🕐', title: '24/7 Service',      sub: 'Available any time, any day' },
           ].map((item, i) => (
             <div key={i} style={{ textAlign: 'center' }}>
@@ -120,25 +120,52 @@ export default function Home() {
               background: '#141210',
               border: '1px solid #2A2720',
               borderRadius: '6px',
-              padding: '24px',
               transition: 'border-color 0.2s',
             }}
               onMouseEnter={e => e.currentTarget.style.borderColor = '#C9A84C'}
               onMouseLeave={e => e.currentTarget.style.borderColor = '#2A2720'}
             >
-              <div style={{ fontSize: 36, marginBottom: '12px' }}>{v.emoji}</div>
-              <div style={{ fontSize: 15, fontWeight: 600, color: '#F0EBE0', marginBottom: '4px' }}>
-                {v.name}
+            {/* ── Vehicle image banner ── */}
+              <div style={{
+                background: '#1A1714',
+                height: '120px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderBottom: '1px solid #2A2720',
+                overflow: 'hidden',
+              }}>
+                {v.image
+                  ? <img
+                      src={v.image}
+                      alt={v.name}
+                      style={{ maxWidth: '100%', maxHeight: '160%', objectFit: 'cover' }}
+                      onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
+                    />
+                  : null
+                }
+                {/* Fallback emoji if image fails or doesn't exist */}
+                <span style={{
+                  fontSize: 64,
+                  display: v.image ? 'none' : 'block',
+                }}>
+                  {v.emoji}
+                </span>
               </div>
-              <div style={{ fontSize: 12, color: '#8A8070', marginBottom: '12px' }}>
-                {v.model}
-              </div>
-              <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
-                <span style={{ fontSize: 11, color: '#8A8070' }}>👥 {v.seats} seats</span>
-                <span style={{ fontSize: 11, color: '#8A8070' }}>🧳 {v.luggage} bags</span>
-              </div>
-              <div style={{ fontSize: 13, color: '#C9A84C', fontWeight: 600 }}>
-                From {v.price_tag}
+              <div style={{padding: '24px',}}>
+                <div style={{ fontSize: 15, fontWeight: 600, color: '#F0EBE0', marginBottom: '4px' }}>
+                  {v.name}
+                </div>
+                <div style={{ fontSize: 12, color: '#8A8070', marginBottom: '12px' }}>
+                  {v.model}
+                </div>
+                <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
+                  <span style={{ fontSize: 11, color: '#8A8070' }}>👥 {v.seats} seats</span>
+                  <span style={{ fontSize: 11, color: '#8A8070' }}>🧳 {v.luggage} bags</span>
+                </div>
+                <div style={{ fontSize: 13, color: '#C9A84C', fontWeight: 600 }}>
+                  From {v.price_tag}
+                </div>
               </div>
             </div>
           ))}

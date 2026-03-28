@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
-import Footer from '../components/Footer'
 
 export default function Fleet() {
   const { vehicles } = useApp()
@@ -52,15 +51,32 @@ export default function Fleet() {
             onMouseEnter={e => e.currentTarget.style.borderColor = '#C9A84C'}
             onMouseLeave={e => e.currentTarget.style.borderColor = '#2A2720'}
           >
-            {/* Vehicle emoji banner */}
+            {/* ── Vehicle image banner ── */}
             <div style={{
               background: '#1A1714',
-              padding: '32px',
-              textAlign: 'center',
-              fontSize: 64,
+              height: '180px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               borderBottom: '1px solid #2A2720',
+              overflow: 'hidden',
             }}>
-              {v.emoji}
+              {v.image
+                ? <img
+                    src={v.image}
+                    alt={v.name}
+                    style={{ maxWidth: '100%', maxHeight: '150%', objectFit: 'cover' }}
+                    onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
+                  />
+                : null
+              }
+              {/* Fallback emoji if image fails or doesn't exist */}
+              <span style={{
+                fontSize: 64,
+                display: v.image ? 'none' : 'block',
+              }}>
+                {v.emoji}
+              </span>
             </div>
 
             {/* Info */}
