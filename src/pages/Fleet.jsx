@@ -9,27 +9,27 @@ export default function Fleet() {
     <div className="bg-[#0A0908] min-h-screen">
 
       {/* Header */}
-      <section className="max-w-[1200px] mx-auto px-10 pt-16 pb-12">
+      <section className="max-w-300 mx-auto px-10 pt-16 pb-12">
         <div className="text-[10px] tracking-[3px] uppercase text-[#C9A84C] mb-3">
           Our Fleet
         </div>
         <h1 className="text-[42px] font-light text-[#F0EBE0] mb-3">
           Choose Your Vehicle
         </h1>
-        <p className="text-sm text-[#8A8070] max-w-[480px] leading-[1.7]">
+        <p className="text-sm text-[#8A8070] max-w-120 leading-[1.7]">
           From budget-friendly SUVs to ultra-luxury VIP transfers — we have the perfect vehicle for every journey.
         </p>
       </section>
 
       {/* Vehicle Grid */}
-      <section className="max-w-[1200px] mx-auto px-10 pb-20 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
+      <section className="max-w-300 mx-auto px-10 pb-20 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
         {vehicles.map(v => (
           <div
             key={v.id}
             className="bg-[#141210] border border-[#2A2720] rounded-md overflow-hidden transition-colors duration-200 hover:border-[#C9A84C]"
           >
             {/* Vehicle image banner */}
-            <div className="bg-[#1A1714] h-[180px] flex items-center justify-center border-b border-[#2A2720] overflow-hidden">
+            <div className="bg-[#1A1714] h-45 flex items-center justify-center border-b border-[#2A2720] overflow-hidden">
               {v.image
                 ? <img
                     src={v.image}

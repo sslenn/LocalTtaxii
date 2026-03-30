@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-[#0A0908] border-b border-[#2A2720] h-16 flex items-center px-10">
-      <div className="w-full max-w-[1200px] mx-auto flex items-center justify-between">
+      <div className="w-full max-w-300 mx-auto flex items-center justify-between">
 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 no-underline">
@@ -72,7 +72,7 @@ export default function Navbar() {
 
               {/* Dropdown */}
               {open && (
-                <div className="absolute top-[110%] right-0 bg-[#1A1714] border border-[#2A2720] rounded min-w-[160px] py-2 shadow-lg z-50">
+                <div className="absolute top-[110%] right-0 bg-[#1A1714] border border-[#2A2720] rounded min-w-40 py-2 shadow-lg z-50">
                   {isAdmin && <DropItem label="Admin Panel" to="/admin" onClick={() => setOpen(false)} />}
                   <DropItem label="My Bookings" to="/my-bookings" onClick={() => setOpen(false)} />
                   <DropItem label="Profile" to="/profile" onClick={() => setOpen(false)} />

@@ -9,7 +9,7 @@ export default function Home() {
     <div className="bg-[#0A0908] min-h-screen">
 
       {/* Hero */}
-      <section className="max-w-[1200px] mx-auto px-10 pt-[100px] pb-20 text-center">
+      <section className="max-w-300 mx-auto px-10 pt-25 pb-20 text-center">
         <div className="text-[11px] tracking-[3px] uppercase text-[#C9A84C] mb-5">
           Premium Private Transfers · Cambodia
         </div>
@@ -17,7 +17,7 @@ export default function Home() {
           Travel Cambodia<br />
           <span className="text-[#C9A84C]">in Comfort</span>
         </h1>
-        <p className="text-base text-[#8A8070] max-w-[480px] mx-auto mb-10 leading-[1.7]">
+        <p className="text-base text-[#8A8070] max-w-120 mx-auto mb-10 leading-[1.7]">
           Fixed prices, premium vehicles and reliable service across 11 routes nationwide.
         </p>
         <div className="flex gap-3.5 justify-center flex-wrap">
@@ -38,7 +38,7 @@ export default function Home() {
 
       {/* Highlights */}
       <section className="border-t border-b border-[#2A2720] px-10 py-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8">
+        <div className="max-w-300 mx-auto grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8">
           {[
             { icon: '💳', title: 'Fixed Pricing',     sub: 'No hidden fees or surprises' },
             { icon: '🛡️', title: 'Safe & Verified',   sub: 'Professional licensed drivers' },
@@ -55,7 +55,7 @@ export default function Home() {
       </section>
 
       {/* Fleet Preview */}
-      <section className="max-w-[1200px] mx-auto px-10 py-20">
+      <section className="max-w-300 mx-auto px-10 py-20">
         <div className="text-center mb-12">
           <div className="text-[10px] tracking-[3px] uppercase text-[#C9A84C] mb-3">
             Our Fleet
@@ -72,7 +72,7 @@ export default function Home() {
               className="bg-[#141210] border border-[#2A2720] rounded-md transition-colors duration-200 hover:border-[#C9A84C]"
             >
               {/* Vehicle image banner */}
-              <div className="bg-[#1A1714] h-[120px] flex items-center justify-center border-b border-[#2A2720] overflow-hidden">
+              <div className="bg-[#1A1714] h-30 flex items-center justify-center border-b border-[#2A2720] overflow-hidden">
                 {v.image
                   ? <img
                       src={v.image}
@@ -113,7 +113,7 @@ export default function Home() {
       </section>
 
       {/* CTA Strip */}
-      <section className="bg-[#141210] border-t border-b border-[#2A2720] px-10 py-[60px] text-center">
+      <section className="bg-[#141210] border-t border-b border-[#2A2720] px-10 py-15 text-center">
         <h2 className="text-[32px] font-light text-[#F0EBE0] mb-3">
           Ready to Travel?
         </h2>

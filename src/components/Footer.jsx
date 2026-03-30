@@ -16,13 +16,13 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0A0908] border-t border-[#2A2720] mt-auto pt-12 pb-6 px-10">
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-300 mx-auto">
 
         {/* Top Row */}
         <div className="flex flex-wrap justify-between items-start gap-8 mb-10">
 
           {/* Brand */}
-          <div className="flex-1 min-w-[240px]">
+          <div className="flex-1 min-w-60">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 bg-[#C9A84C] rounded-sm flex items-center justify-center font-bold text-lg text-black">
                 T

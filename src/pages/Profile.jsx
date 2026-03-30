@@ -56,7 +56,7 @@ export default function Profile() {
 
       {/* Header */}
       <section className="px-8 pt-14 pb-10 border-b border-[#1a1a0a]">
-        <div className="max-w-[860px] mx-auto">
+        <div className="max-w-215 mx-auto">
           <p className="text-[10px] tracking-[3px] text-[#7a7055] uppercase font-sans mb-3">
             ACCOUNT
           </p>
@@ -68,13 +68,13 @@ export default function Profile() {
       </section>
 
       {/* Body */}
-      <div className="max-w-[860px] mx-auto px-8 pt-8 pb-20 flex gap-4 items-start">
+      <div className="max-w-215 mx-auto px-8 pt-8 pb-20 flex gap-4 items-start">
 
         {/* Left card: avatar */}
-        <div className="w-[200px] h-[312px] shrink-0 bg-[#131208] border border-[#1e1c0a] px-6 py-9 flex flex-col items-center text-center">
+        <div className="w-50 h-78 shrink-0 bg-[#131208] border border-[#1e1c0a] px-6 py-9 flex flex-col items-center text-center">
 
           {/* Avatar circle */}
-          <div className="w-[72px] h-[72px] rounded-full border border-[#c9a84c] flex items-center justify-center text-[26px] text-[#c9a84c] font-serif mb-5 bg-transparent overflow-hidden shrink-0">
+          <div className="w-18 h-18 rounded-full border border-[#c9a84c] flex items-center justify-center text-[26px] text-[#c9a84c] font-serif mb-5 bg-transparent overflow-hidden shrink-0">
             {avatar
               ? <img src={avatar} alt="avatar" className="w-full h-full object-cover" />
               : initial
@@ -107,7 +107,7 @@ export default function Profile() {
         {/* Right card: form */}
         <div className="flex-1 bg-[#131208] border border-[#1e1c0a] px-7 pt-7 pb-8">
 
-          <p className="text-[10px] tracking-[2.5px] text-[#7a7055] uppercase font-sans mb-[22px]">
+          <p className="text-[10px] tracking-[2.5px] text-[#7a7055] uppercase font-sans mb-5.5">
             PERSONAL INFORMATION
           </p>
 

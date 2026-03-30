@@ -93,17 +93,17 @@ export default function Booking() {
 
       {/* ── Header ── */}
       <section className="bg-[radial-gradient(ellipse_at_50%_0%,rgba(201,168,76,0.06)_0%,transparent_60%)] bg-[#111] border-b border-[#141414] py-16 px-8 mb-10">
-        <div className="max-w-[980px] mx-auto">
+        <div className="max-w-245 mx-auto">
           <p className="text-[#c9a84c] tracking-widest text-xs font-sans mb-3">RESERVE YOUR SEAT</p>
           <h1 className="font-cormorant text-[3.5rem] font-normal text-white mb-2.5 tracking-[1px]">Book a Transfer</h1>
-          <p className="text-gray-500 max-w-[500px] text-xs font-sans leading-6 m-0">
+          <p className="text-gray-500 max-w-125 text-xs font-sans leading-6 m-0">
             Cross-province expeditions with fixed-rate transparency. All-inclusive pricing, door-to-door.
           </p>
         </div>
       </section>
 
       {/* ── Body ── */}
-      <div className="max-w-[980px] mx-auto px-6 pb-20">
+      <div className="max-w-245 mx-auto px-6 pb-20">
         <div className="flex gap-7 items-start">
 
           {/* ── Form column ── */}
@@ -248,7 +248,7 @@ export default function Booking() {
           </div>
 
           {/* ── Summary sidebar ── */}
-          <div className="w-[235px] flex-shrink-0 bg-[#0d0c05] border border-[#1e1d08] p-6 sticky top-6">
+          <div className="w-58.75 shrink-0 bg-[#0d0c05] border border-[#1e1d08] p-6 sticky top-6">
             <p className="text-[15px] text-[#e8e0c8] font-serif font-normal mb-5">Booking Summary</p>
 
             <div className="flex justify-between items-start mb-3 text-[12px] font-sans gap-2">

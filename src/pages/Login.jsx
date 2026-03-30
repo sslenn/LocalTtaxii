@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-[#0A0908] flex items-center justify-center px-5 py-10">
-      <div className="w-full max-w-[380px]">
+      <div className="w-full max-w-95">
 
         {/* Logo */}
         <div className="text-center mb-8">

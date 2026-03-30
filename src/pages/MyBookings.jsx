@@ -33,7 +33,7 @@ export default function MyBookings() {
 
       {/* Header */}
       <section className="px-8 pt-14 pb-10 border-b border-[#1a1a0a]">
-        <div className="max-w-[820px] mx-auto">
+        <div className="max-w-205 mx-auto">
           <p className="text-[10px] tracking-[3px] text-[#7a7055] uppercase font-sans mb-3">
             YOUR TRANSFERS
           </p>
@@ -45,7 +45,7 @@ export default function MyBookings() {
       </section>
 
       {/* Bookings list */}
-      <div className="max-w-[820px] mx-auto px-8 pt-7 pb-20">
+      <div className="max-w-205 mx-auto px-8 pt-7 pb-20">
 
         {sorted.length === 0 ? (
           <div className="text-center py-20 text-[#5a5535] font-sans text-sm">
@@ -69,10 +69,10 @@ export default function MyBookings() {
               return (
                 <div
                   key={booking.id}
-                  className="bg-[#131208] border border-[#1e1c0a] px-6 py-[18px] flex items-center gap-5 transition-colors duration-200 hover:bg-[#181608]"
+                  className="bg-[#131208] border border-[#1e1c0a] px-6 py-4.5 flex items-center gap-5 transition-colors duration-200 hover:bg-[#181608]"
                 >
                   {/* Ref number */}
-                  <span className="text-[11px] text-[#c9a84c] font-sans tracking-[1px] min-w-[68px] font-bold">
+                  <span className="text-[11px] text-[#c9a84c] font-sans tracking-[1px] min-w-17 font-bold">
                     {ref}
                   </span>
 
@@ -96,7 +96,7 @@ export default function MyBookings() {
                   </span>
 
                   {/* Price */}
-                  <span className="text-[15px] text-[#e8e0c8] font-sans font-bold min-w-[48px] text-right">
+                  <span className="text-[15px] text-[#e8e0c8] font-sans font-bold min-w-12 text-right">
                     ${booking.price ?? '—'}
                   </span>
 

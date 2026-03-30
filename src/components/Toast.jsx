@@ -6,7 +6,7 @@ export default function Toast() {
   if (!toasts.length) return null
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-2 z-[9999]">
+    <div className="fixed bottom-6 right-6 flex flex-col gap-2 z-9999">
       {toasts.map(t => {
         const bgColor = t.type === 'success' ? 'bg-green-600' :
                         t.type === 'error'   ? 'bg-red-600' :
@@ -16,7 +16,7 @@ export default function Toast() {
         return (
           <div
             key={t.id}
-            className={`${bgColor} text-white font-medium text-sm min-w-[240px] px-5 py-3 rounded shadow-lg animate-slideIn`}
+            className={`${bgColor} text-white font-medium text-sm min-w-60 px-5 py-3 rounded shadow-lg animate-slideIn`}
           >
             {t.msg}
           </div>

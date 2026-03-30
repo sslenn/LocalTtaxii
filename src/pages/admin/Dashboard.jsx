@@ -32,7 +32,7 @@ export default function AdminDashboard() {
         <p className="text-[10px] tracking-widest text-[#7a7055] uppercase font-sans mb-2">
           OVERVIEW
         </p>
-        <div className="w-7 h-[2px] bg-[#c9a84c] mb-3.5" />
+        <div className="w-7 h-0.5 bg-[#c9a84c] mb-3.5" />
         <h1 className="text-[38px] font-normal text-[#e8e0c8] font-serif tracking-[0.5px]">
           Dashboard
         </h1>

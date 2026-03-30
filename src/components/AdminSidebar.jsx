@@ -19,7 +19,7 @@ export default function AdminSidebar() {
   }
 
   return (
-    <div className="w-[240px] min-h-screen bg-[#0D0C0A] border-r border-[#2A2720] flex flex-col fixed top-0 left-0">
+    <div className="w-60 min-h-screen bg-[#0D0C0A] border-r border-[#2A2720] flex flex-col fixed top-0 left-0">
 
       {/* Logo */}
       <div className="p-6 border-b border-[#2A2720]">

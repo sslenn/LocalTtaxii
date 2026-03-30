@@ -57,7 +57,7 @@ export default function AdminVehicles() {
         <p className="text-[10px] tracking-widest text-[#7a7055] uppercase font-sans mb-2">FLEET</p>
         <div className="flex justify-between items-end">
           <div>
-            <div className="w-7 h-[2px] bg-[#c9a84c] mb-3.5" />
+            <div className="w-7 h-0.5 bg-[#c9a84c] mb-3.5" />
             <h1 className="text-[38px] font-normal text-[#e8e0c8] font-serif tracking-[0.5px]">Vehicles</h1>
           </div>
           <button
@@ -123,7 +123,7 @@ export default function AdminVehicles() {
           className="fixed inset-0 bg-black/75 flex items-center justify-center z-50"
           onClick={e => { if(e.target===e.currentTarget) setShowModal(false); }}
         >
-          <div className="bg-[#111008] border border-[#2a2810] p-8 w-[520px] max-w-[90vw] max-h-[90vh] overflow-y-auto">
+          <div className="bg-[#111008] border border-[#2a2810] p-8 w-130 max-w-[90vw] max-h-[90vh] overflow-y-auto">
 
             <h2 className="text-[22px] font-normal text-[#e8e0c8] font-serif mb-6">
               {editing ? 'Edit Vehicle' : 'Add Vehicle'}
@@ -182,7 +182,7 @@ export default function AdminVehicles() {
             {/* Description */}
             <div className="mb-4">
               <label className="block text-[10px] tracking-[2px] text-[#7a7055] uppercase mb-1">DESCRIPTION</label>
-              <textarea value={form.description} onChange={e=>upd('description',e.target.value)} placeholder="Describe this vehicle..." className="w-full bg-[#0d0c05] border border-[#2a2810] text-[#e8e0c8] p-2.5 text-[13px] font-sans min-h-[72px] resize-y"/>
+              <textarea value={form.description} onChange={e=>upd('description',e.target.value)} placeholder="Describe this vehicle..." className="w-full bg-[#0d0c05] border border-[#2a2810] text-[#e8e0c8] p-2.5 text-[13px] font-sans min-h-18 resize-y"/>
             </div>
 
             {/* Available */}

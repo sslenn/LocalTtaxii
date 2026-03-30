@@ -29,7 +29,7 @@ export default function AdminUsers() {
         </p>
         <div className="flex justify-between items-end">
           <div>
-            <div className="w-7 h-[2px] bg-[#c9a84c] mb-3.5"></div>
+            <div className="w-7 h-0.5 bg-[#c9a84c] mb-3.5"></div>
             <h1 className="text-4xl font-normal text-[#e8e0c8] font-serif tracking-[0.5px]">
               Users
             </h1>

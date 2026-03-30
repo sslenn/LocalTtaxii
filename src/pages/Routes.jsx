@@ -13,20 +13,20 @@ export default function Routes() {
   const { routes } = useApp()
 
   return (
-    <div className="pt-[72px] min-h-screen bg-[#0b0b0b]">
+    <div className="pt-18 min-h-screen bg-[#0b0b0b]">
 
       {/* Header */}
       <section className="border-b border-[#141414] px-8 pt-16 pb-12"
         style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%), #111' }}
       >
-        <div className="max-w-[1200px] mx-auto">
+        <div className="max-w-300 mx-auto">
           <p className="text-[#c9a84c] tracking-[2px] text-[0.75rem]">
             Route Archive
           </p>
           <h1 className="font-['Cormorant_Garamond'] text-6xl mb-2 text-white">
             Regional Transfers
           </h1>
-          <p className="text-[#888] max-w-[500px] text-[0.8rem]">
+          <p className="text-[#888] max-w-125 text-[0.8rem]">
             Cross-province expeditions with fixed-rate transparency.
             All-inclusive pricing, door-to-door.
           </p>
@@ -34,12 +34,12 @@ export default function Routes() {
       </section>
 
       {/* Table */}
-      <section className="px-8 py-12 max-w-[1200px] mx-auto mt-8">
+      <section className="px-8 py-12 max-w-300 mx-auto mt-8">
         <div className="border border-[#1a1a1a] rounded-md overflow-hidden bg-[#0d0d0d] p-4 m-4">
           <table className="w-full border-collapse text-white">
             <thead>
               <tr className="border-b border-[#1a1a1a] text-[11px] tracking-[1px] text-[#777]">
-                <th className="p-[14px] text-left">#</th>
+                <th className="p-3.5 text-left">#</th>
                 <th className="text-left">Journey</th>
                 {VEHICLE_COLS.map(c => (
                   <th key={c.key} className="text-right">{c.label}</th>

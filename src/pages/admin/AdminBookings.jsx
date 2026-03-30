@@ -42,7 +42,7 @@ export default function AdminBookings() {
           MANAGEMENT
         </p>
         <div className="flex items-center justify-between gap-4">
-          <div className="w-7 h-[2px] bg-[#c9a84c] mb-3.5" />
+          <div className="w-7 h-0.5 bg-[#c9a84c] mb-3.5" />
         </div>
         <div className="flex items-end justify-between">
           <h1 className="text-4xl font-normal text-[#e8e0c8] font-serif tracking-[0.5px]">
