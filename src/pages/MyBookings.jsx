@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
 const STATUS_STYLES = {
-  confirmed: { background: 'rgba(80,160,80,0.15)', color: '#6abf6a', border: '1px solid rgba(80,160,80,0.3)', label: 'CONFIRMED' },
-  pending:   { background: 'rgba(201,168,76,0.12)', color: '#c9a84c', border: '1px solid rgba(201,168,76,0.3)', label: 'PENDING' },
-  completed: { background: 'rgba(100,130,180,0.12)', color: '#8aaad4', border: '1px solid rgba(100,130,180,0.3)', label: 'COMPLETED' },
-  cancelled: { background: 'rgba(180,60,60,0.12)', color: '#d47a7a', border: '1px solid rgba(180,60,60,0.3)', label: 'CANCELLED' },
+  confirmed: { className: 'bg-[rgba(80,160,80,0.15)] text-[#6abf6a] border border-[rgba(80,160,80,0.3)]', label: 'CONFIRMED' },
+  pending:   { className: 'bg-[rgba(201,168,76,0.12)] text-[#c9a84c] border border-[rgba(201,168,76,0.3)]', label: 'PENDING' },
+  completed: { className: 'bg-[rgba(100,130,180,0.12)] text-[#8aaad4] border border-[rgba(100,130,180,0.3)]', label: 'COMPLETED' },
+  cancelled: { className: 'bg-[rgba(180,60,60,0.12)] text-[#d47a7a] border border-[rgba(180,60,60,0.3)]', label: 'CANCELLED' },
 };
 
 export default function MyBookings() {
@@ -19,104 +19,96 @@ export default function MyBookings() {
 
   if (!currentUser) return null;
 
-  // Sort newest first
   const sorted = [...myBookings].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   const fmtDate = d => d
     ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
-  // Generate short booking ref like #BK-001
   const getRef = (booking, index) =>
     booking.id?.startsWith('#') ? booking.id : `#BK-${String(index + 1).padStart(3, '0')}`;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0e0d07', color: '#e8e0c8', fontFamily: 'Georgia, serif' }}>
+    <div className="min-h-screen bg-[#0e0d07] text-[#e8e0c8] font-serif">
 
-      {/* ── Header ── */}
-      <section style={{ padding: '3.5rem 2rem 2.5rem', borderBottom: '1px solid #1a1a0a' }}>
-        <div style={{ maxWidth: 820, margin: '0 auto' }}>
-          <p style={{ fontSize: 10, letterSpacing: '3px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', margin: '0 0 12px' }}>
+      {/* Header */}
+      <section className="px-8 pt-14 pb-10 border-b border-[#1a1a0a]">
+        <div className="max-w-[820px] mx-auto">
+          <p className="text-[10px] tracking-[3px] text-[#7a7055] uppercase font-sans mb-3">
             YOUR TRANSFERS
           </p>
-          <div style={{ width: 28, height: 2, background: '#c9a84c', marginBottom: 16 }} />
-          <h1 style={{ fontSize: 34, fontWeight: 'normal', color: '#e8e0c8', margin: 0, letterSpacing: 0.5 }}>
+          <div className="w-7 h-0.5 bg-[#c9a84c] mb-4" />
+          <h1 className="text-[34px] font-normal text-[#e8e0c8] m-0 tracking-[0.5px]">
             My Bookings
           </h1>
         </div>
       </section>
 
-      {/* ── Bookings list ── */}
-      <div style={{ maxWidth: 820, margin: '0 auto', padding: '28px 2rem 80px' }}>
+      {/* Bookings list */}
+      <div className="max-w-[820px] mx-auto px-8 pt-7 pb-20">
 
         {sorted.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '80px 0', color: '#5a5535', fontFamily: 'Arial,sans-serif', fontSize: 14 }}>
-            <p style={{ fontSize: 32, marginBottom: 16 }}>🚗</p>
-            <p style={{ marginBottom: 8 }}>No bookings yet.</p>
+          <div className="text-center py-20 text-[#5a5535] font-sans text-sm">
+            <p className="text-[32px] mb-4">🚗</p>
+            <p className="mb-2">No bookings yet.</p>
             <button
               onClick={() => navigate('/book')}
-              style={{ marginTop: 16, background: '#c9a84c', border: 'none', color: '#0e0d07', padding: '11px 28px', fontSize: 11, fontWeight: 'bold', letterSpacing: '1.5px', cursor: 'pointer', fontFamily: 'Arial,sans-serif', textTransform: 'uppercase' }}
+              className="mt-4 bg-[#c9a84c] border-none text-[#0e0d07] px-7 py-3 text-[11px] font-bold tracking-[1.5px] cursor-pointer font-sans uppercase"
             >
               Book a Transfer
             </button>
           </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <div className="flex flex-col gap-0.5">
             {sorted.map((booking, index) => {
-              const status  = (booking.status || 'pending').toLowerCase();
-              const st      = STATUS_STYLES[status] || STATUS_STYLES.pending;
-              const ref     = getRef(booking, index);
+              const status = (booking.status || 'pending').toLowerCase();
+              const st = STATUS_STYLES[status] || STATUS_STYLES.pending;
+              const ref = getRef(booking, index);
               const canCancel = status === 'pending' || status === 'confirmed';
 
               return (
                 <div
                   key={booking.id}
-                  style={{ background: '#131208', border: '1px solid #1e1c0a', padding: '18px 24px', display: 'flex', alignItems: 'center', gap: 20, transition: 'background 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#181608'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#131208'}
+                  className="bg-[#131208] border border-[#1e1c0a] px-6 py-[18px] flex items-center gap-5 transition-colors duration-200 hover:bg-[#181608]"
                 >
-
                   {/* Ref number */}
-                  <span style={{ fontSize: 11, color: '#c9a84c', fontFamily: 'Arial,sans-serif', letterSpacing: '1px', minWidth: 68, fontWeight: 'bold' }}>
+                  <span className="text-[11px] text-[#c9a84c] font-sans tracking-[1px] min-w-[68px] font-bold">
                     {ref}
                   </span>
 
                   {/* Route */}
-                  <span style={{ fontSize: 14, color: '#e8e0c8', flex: 1, fontFamily: 'Georgia,serif' }}>
-                    {booking.from} <span style={{ color: '#7a7055', margin: '0 4px' }}>→</span> {booking.to}
+                  <span className="text-sm text-[#e8e0c8] flex-1 font-serif">
+                    {booking.from}{' '}
+                    <span className="text-[#7a7055] mx-1">→</span>
+                    {booking.to}
                   </span>
 
-                  {/* Meta: date · vehicle · pax */}
-                  <span style={{ fontSize: 12, color: '#7a7055', fontFamily: 'Arial,sans-serif', whiteSpace: 'nowrap' }}>
+                  {/* Meta */}
+                  <span className="text-xs text-[#7a7055] font-sans whitespace-nowrap">
                     {fmtDate(booking.date)}
                     {booking.vehicleName && <span> · {booking.vehicleName}</span>}
                     {booking.passengers  && <span> · {booking.passengers} pax</span>}
                   </span>
 
                   {/* Status badge */}
-                  <span style={{ fontSize: 10, fontFamily: 'Arial,sans-serif', letterSpacing: '1px', padding: '3px 10px', background: st.background, color: st.color, border: st.border, whiteSpace: 'nowrap' }}>
+                  <span className={`text-[10px] font-sans tracking-[1px] px-2.5 py-0.5 whitespace-nowrap ${st.className}`}>
                     {st.label}
                   </span>
 
                   {/* Price */}
-                  <span style={{ fontSize: 15, color: '#e8e0c8', fontFamily: 'Arial,sans-serif', fontWeight: 'bold', minWidth: 48, textAlign: 'right' }}>
+                  <span className="text-[15px] text-[#e8e0c8] font-sans font-bold min-w-[48px] text-right">
                     ${booking.price ?? '—'}
                   </span>
 
-                  {/* Cancel button — only for pending/confirmed */}
+                  {/* Cancel button */}
                   {canCancel && (
                     <button
-                      onClick={() => {
-                        if (window.confirm('Cancel this booking?')) cancelBooking(booking.id);
-                      }}
-                      style={{ background: 'transparent', border: '1px solid #2e2a10', color: '#7a7055', fontSize: 10, padding: '4px 10px', cursor: 'pointer', fontFamily: 'Arial,sans-serif', letterSpacing: '1px', textTransform: 'uppercase', whiteSpace: 'nowrap' }}
-                      onMouseEnter={e => { e.currentTarget.style.borderColor = '#c97050'; e.currentTarget.style.color = '#c97050'; }}
-                      onMouseLeave={e => { e.currentTarget.style.borderColor = '#2e2a10'; e.currentTarget.style.color = '#7a7055'; }}
+                      onClick={() => { if (window.confirm('Cancel this booking?')) cancelBooking(booking.id); }}
+                      className="bg-transparent border border-[#2e2a10] text-[#7a7055] text-[10px] px-2.5 py-1 cursor-pointer font-sans tracking-[1px] uppercase whitespace-nowrap transition-colors duration-200 hover:border-[#c97050] hover:text-[#c97050]"
                     >
                       Cancel
                     </button>
                   )}
-
                 </div>
               );
             })}
@@ -125,12 +117,10 @@ export default function MyBookings() {
 
         {/* Book another */}
         {sorted.length > 0 && (
-          <div style={{ marginTop: 32, borderTop: '1px solid #1a1a0a', paddingTop: 24 }}>
+          <div className="mt-8 border-t border-[#1a1a0a] pt-6">
             <button
               onClick={() => navigate('/booking')}
-              style={{ background: '#c9a84c', border: 'none', color: '#0e0d07', padding: '11px 28px', fontSize: 11, fontWeight: 'bold', letterSpacing: '1.5px', cursor: 'pointer', fontFamily: 'Arial,sans-serif', textTransform: 'uppercase' }}
-              onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
-              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+              className="bg-[#c9a84c] border-none text-[#0e0d07] px-7 py-3 text-[11px] font-bold tracking-[1.5px] cursor-pointer font-sans uppercase transition-opacity duration-200 hover:opacity-85"
             >
               + Book Another Transfer
             </button>

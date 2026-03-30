@@ -2,17 +2,16 @@ import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 
 const STATUS_STYLE = {
-  confirmed: { background: 'rgba(80,160,80,0.15)', color: '#6abf6a', border: '1px solid rgba(80,160,80,0.35)' },
-  pending:   { background: 'rgba(201,168,76,0.12)', color: '#c9a84c', border: '1px solid rgba(201,168,76,0.35)' },
-  completed: { background: 'rgba(100,130,180,0.12)', color: '#8aaad4', border: '1px solid rgba(100,130,180,0.35)' },
-  cancelled: { background: 'rgba(180,60,60,0.12)',  color: '#d47a7a', border: '1px solid rgba(180,60,60,0.35)'  },
+  confirmed: 'bg-[rgba(80,160,80,0.15)] text-[#6abf6a] border border-[rgba(80,160,80,0.35)]',
+  pending:   'bg-[rgba(201,168,76,0.12)] text-[#c9a84c] border border-[rgba(201,168,76,0.35)]',
+  completed: 'bg-[rgba(100,130,180,0.12)] text-[#8aaad4] border border-[rgba(100,130,180,0.35)]',
+  cancelled: 'bg-[rgba(180,60,60,0.12)] text-[#d47a7a] border border-[rgba(180,60,60,0.35)]',
 };
 
 export default function AdminBookings() {
   const { bookings, updateBookingStatus } = useApp();
-
   const [statusFilter, setStatusFilter] = useState('all');
-  const [search,       setSearch]       = useState('');
+  const [search, setSearch] = useState('');
 
   const sorted = [...bookings].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
@@ -22,7 +21,7 @@ export default function AdminBookings() {
     const matchSearch = !q
       || (b.customerName || b.userName || '').toLowerCase().includes(q)
       || (b.from || '').toLowerCase().includes(q)
-      || (b.to   || '').toLowerCase().includes(q)
+      || (b.to || '').toLowerCase().includes(q)
       || (b.vehicleName || '').toLowerCase().includes(q);
     return matchStatus && matchSearch;
   });
@@ -32,30 +31,30 @@ export default function AdminBookings() {
     : '—';
 
   const getRef = (i) => `#BK-${String(i + 1).padStart(3, '0')}`;
-
   const fromShort = from => from ? from.split(' ').map(w => w[0]).join('') : '?';
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0900', color: '#e8e0c8', fontFamily: 'Georgia, serif', padding: '40px 40px 80px' }}>
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e0c8] font-serif p-10 pb-20">
 
-      {/* ── Header ── */}
-      <div style={{ marginBottom: 36 }}>
-        <p style={{ fontSize: 10, letterSpacing: '3px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', margin: '0 0 10px' }}>
+      {/* Header */}
+      <div className="mb-9">
+        <p className="text-[10px] tracking-widest text-[#7a7055] uppercase mb-2 font-sans">
           MANAGEMENT
         </p>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
-          <div style={{ width: 28, height: 2, background: '#c9a84c', marginBottom: 14 }} />
+        <div className="flex items-center justify-between gap-4">
+          <div className="w-7 h-[2px] bg-[#c9a84c] mb-3.5" />
         </div>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-          <h1 style={{ fontSize: 38, fontWeight: 'normal', color: '#e8e0c8', margin: 0, fontFamily: 'Georgia,serif', letterSpacing: 0.5 }}>
+        <div className="flex items-end justify-between">
+          <h1 className="text-4xl font-normal text-[#e8e0c8] font-serif tracking-[0.5px]">
             All Bookings
           </h1>
+
           {/* Filters */}
-          <div style={{ display: 'flex', gap: 10 }}>
+          <div className="flex gap-2">
             <select
               value={statusFilter}
               onChange={e => setStatusFilter(e.target.value)}
-              style={{ background: '#111008', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 12, padding: '8px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', cursor: 'pointer', appearance: 'none', WebkitAppearance: 'none' }}
+              className="bg-[#111008] border border-[#2a2810] text-[#e8e0c8] text-[12px] px-4 py-2 outline-none font-sans cursor-pointer appearance-none"
             >
               <option value="all">All Statuses</option>
               <option value="pending">Pending</option>
@@ -63,100 +62,83 @@ export default function AdminBookings() {
               <option value="completed">Completed</option>
               <option value="cancelled">Cancelled</option>
             </select>
+
             <input
               type="text"
               placeholder="Search..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ background: '#111008', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 12, padding: '8px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', width: 180 }}
+              className="bg-[#111008] border border-[#2a2810] text-[#e8e0c8] text-[12px] px-4 py-2 outline-none font-sans w-44"
             />
           </div>
         </div>
       </div>
 
-      {/* ── Table ── */}
-      <div style={{ border: '1px solid #1e1c08', overflow: 'hidden' }}>
+      {/* Table */}
+      <div className="border border-[#1e1c08] overflow-hidden">
 
         {/* Column headers */}
-        <div style={{ display: 'grid', gridTemplateColumns: '100px 1fr 1fr 90px 80px 60px 75px 110px 100px', padding: '12px 20px', background: '#111008', borderBottom: '1px solid #1a1900' }}>
+        <div className="grid grid-cols-[100px_1fr_1fr_90px_80px_60px_75px_110px_100px] p-3 bg-[#111008] border-b border-[#1a1900] text-[9px] tracking-widest uppercase text-[#5a5535] font-sans">
           {['ID', 'CUSTOMER', 'ROUTE', 'VEHICLE', 'DATE', 'PAX', 'AMOUNT', 'STATUS', 'ACTION'].map(h => (
-            <span key={h} style={{ fontSize: 9, letterSpacing: '2px', color: '#5a5535', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif' }}>
-              {h}
-            </span>
+            <span key={h}>{h}</span>
           ))}
         </div>
 
         {/* Rows */}
         {filtered.length === 0 ? (
-          <div style={{ padding: '40px 20px', textAlign: 'center', color: '#5a5535', fontFamily: 'Arial,sans-serif', fontSize: 13 }}>
+          <div className="p-10 text-center text-[#5a5535] text-sm font-sans">
             No bookings found.
           </div>
         ) : (
           filtered.map((b, i) => {
             const status = (b.status || 'pending').toLowerCase();
             const st = STATUS_STYLE[status] || STATUS_STYLE.pending;
-            const canConfirm  = status === 'pending';
+            const canConfirm = status === 'pending';
             const canComplete = status === 'confirmed';
-            const canCancel   = status === 'pending' || status === 'confirmed';
+            const canCancel = status === 'pending' || status === 'confirmed';
 
             return (
               <div
                 key={b.id}
-                style={{ display: 'grid', gridTemplateColumns: '100px 1fr 1fr 90px 80px 60px 75px 110px 100px', padding: '14px 20px', borderBottom: '1px solid #161505', alignItems: 'center', transition: 'background 0.15s', cursor: 'default' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#111008'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                className="grid grid-cols-[100px_1fr_1fr_90px_80px_60px_75px_110px_100px] p-3 border-b border-[#161505] items-center hover:bg-[#111008] transition-colors cursor-default"
               >
                 {/* ID */}
-                <span style={{ fontSize: 12, color: '#c9a84c', fontFamily: 'Arial,sans-serif', letterSpacing: '0.5px' }}>
-                  {getRef(sorted.length - 1 - i)}
-                </span>
+                <span className="text-[12px] text-[#c9a84c] font-sans tracking-[0.5px]">{getRef(sorted.length - 1 - i)}</span>
 
                 {/* Customer */}
-                <span style={{ fontSize: 13, color: '#e8e0c8', fontFamily: 'Georgia,serif' }}>
-                  {b.customerName || b.userName || '—'}
-                </span>
+                <span className="text-sm text-[#e8e0c8] font-serif">{b.customerName || b.userName || '—'}</span>
 
                 {/* Route */}
-                <span style={{ fontSize: 13, color: '#c8c0a8', fontFamily: 'Georgia,serif' }}>
+                <span className="text-sm text-[#c8c0a8] font-serif">
                   {b.from && b.to
-                    ? <>{fromShort(b.from)} <span style={{ color: '#5a5535', margin: '0 3px' }}>→</span> {b.to}</>
+                    ? <>{fromShort(b.from)} <span className="mx-1 text-[#5a5535]">→</span> {b.to}</>
                     : b.routeLabel || '—'
                   }
                 </span>
 
                 {/* Vehicle */}
-                <span style={{ fontSize: 12, color: '#9a9070', fontFamily: 'Arial,sans-serif' }}>
-                  {b.vehicleName || '—'}
-                </span>
+                <span className="text-[12px] text-[#9a9070] font-sans">{b.vehicleName || '—'}</span>
 
                 {/* Date */}
-                <span style={{ fontSize: 12, color: '#9a9070', fontFamily: 'Arial,sans-serif' }}>
-                  {fmtDate(b.date)}
-                </span>
+                <span className="text-[12px] text-[#9a9070] font-sans">{fmtDate(b.date)}</span>
 
                 {/* Pax */}
-                <span style={{ fontSize: 12, color: '#9a9070', fontFamily: 'Arial,sans-serif' }}>
-                  {b.passengers ?? '—'}
-                </span>
+                <span className="text-[12px] text-[#9a9070] font-sans">{b.passengers ?? '—'}</span>
 
                 {/* Amount */}
-                <span style={{ fontSize: 13, color: '#e8e0c8', fontFamily: 'Arial,sans-serif' }}>
-                  ${b.price ?? '—'}
-                </span>
+                <span className="text-sm text-[#e8e0c8] font-sans">${b.price ?? '—'}</span>
 
                 {/* Status badge */}
-                <span style={{ fontSize: 10, fontFamily: 'Arial,sans-serif', letterSpacing: '1px', padding: '3px 10px', textTransform: 'uppercase', display: 'inline-block', ...st }}>
+                <span className={`flex justify-center text-[10px] font-sans tracking-wider w-24 px-3 py-1 uppercase  ${st}`}>
                   {status}
                 </span>
 
-                {/* Action */}
-                <div style={{ display: 'flex', gap: 6 }}>
+                {/* Actions */}
+                <div className="flex gap-1 justify-center">
                   {canConfirm && (
                     <button
                       onClick={() => updateBookingStatus(b.id, 'confirmed')}
-                      style={{ background: 'transparent', border: '1px solid #2a2810', color: '#c9a84c', fontSize: 10, padding: '4px 10px', cursor: 'pointer', fontFamily: 'Arial,sans-serif', letterSpacing: '1px', textTransform: 'uppercase' }}
-                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(201,168,76,0.1)'; }}
-                      onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
+                      className="text-[10px] font-sans uppercase tracking-wide px-2 py-1 border border-[#2a2810] text-[#c9a84c] hover:bg-[rgba(201,168,76,0.1)]"
                     >
                       Confirm
                     </button>
@@ -164,9 +146,7 @@ export default function AdminBookings() {
                   {canComplete && (
                     <button
                       onClick={() => updateBookingStatus(b.id, 'completed')}
-                      style={{ background: 'transparent', border: '1px solid #2a2810', color: '#8aaad4', fontSize: 10, padding: '4px 10px', cursor: 'pointer', fontFamily: 'Arial,sans-serif', letterSpacing: '1px', textTransform: 'uppercase' }}
-                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(100,130,180,0.1)'; }}
-                      onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
+                      className="text-[10px] font-sans uppercase tracking-wide px-2 py-1 border border-[#2a2810] text-[#8aaad4] hover:bg-[rgba(100,130,180,0.1)]"
                     >
                       Complete
                     </button>
@@ -174,15 +154,13 @@ export default function AdminBookings() {
                   {canCancel && (
                     <button
                       onClick={() => { if (window.confirm('Cancel this booking?')) updateBookingStatus(b.id, 'cancelled'); }}
-                      style={{ background: 'transparent', border: 'none', color: '#5a5535', fontSize: 12, padding: '4px 6px', cursor: 'pointer', fontFamily: 'Arial,sans-serif' }}
-                      onMouseEnter={e => { e.currentTarget.style.color = '#d47a7a'; }}
-                      onMouseLeave={e => { e.currentTarget.style.color = '#5a5535'; }}
+                      className="text-[12px] font-sans px-1 hover:text-[#d47a7a] text-[#5a5535]"
                     >
-                      —
+                      
                     </button>
                   )}
                   {!canConfirm && !canComplete && !canCancel && (
-                    <span style={{ color: '#5a5535', fontSize: 12, fontFamily: 'Arial,sans-serif' }}>—</span>
+                    <span className="text-[12px] text-[#5a5535] font-sans">—</span>
                   )}
                 </div>
               </div>

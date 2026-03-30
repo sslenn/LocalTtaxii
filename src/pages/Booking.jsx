@@ -89,65 +89,55 @@ export default function Booking() {
   if (!currentUser) return null;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#111108', color: '#e8e0c8', fontFamily: 'Georgia, serif' }}>
+    <div className="min-h-screen bg-[#111108] text-[#e8e0c8] font-serif">
 
       {/* ── Header ── */}
-      <section style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%), #111', borderBottom: '1px solid #141414', padding: '4rem 2rem 3rem', marginBottom: 40 }}>
-        <div style={{ maxWidth: 980, margin: '0 auto' }}>
-          <p style={{ color: '#c9a84c', letterSpacing: '2px', fontSize: '0.75rem', fontFamily: 'Arial,sans-serif', marginBottom: 12 }}>
-            RESERVE YOUR SEAT
-          </p>
-          <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: '3.5rem', fontWeight: 'normal', color: '#fff', marginBottom: '0.5rem', letterSpacing: 1 }}>
-            Book a Transfer
-          </h1>
-          <p style={{ color: '#888', maxWidth: 500, fontSize: '0.8rem', fontFamily: 'Arial,sans-serif', lineHeight: 1.6, margin: 0 }}>
+      <section className="bg-[radial-gradient(ellipse_at_50%_0%,rgba(201,168,76,0.06)_0%,transparent_60%)] bg-[#111] border-b border-[#141414] py-16 px-8 mb-10">
+        <div className="max-w-[980px] mx-auto">
+          <p className="text-[#c9a84c] tracking-widest text-xs font-sans mb-3">RESERVE YOUR SEAT</p>
+          <h1 className="font-cormorant text-[3.5rem] font-normal text-white mb-2.5 tracking-[1px]">Book a Transfer</h1>
+          <p className="text-gray-500 max-w-[500px] text-xs font-sans leading-6 m-0">
             Cross-province expeditions with fixed-rate transparency. All-inclusive pricing, door-to-door.
           </p>
         </div>
       </section>
 
       {/* ── Body ── */}
-      <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 24px 80px' }}>
-        <div style={{ display: 'flex', gap: 28, alignItems: 'flex-start' }}>
+      <div className="max-w-[980px] mx-auto px-6 pb-20">
+        <div className="flex gap-7 items-start">
 
           {/* ── Form column ── */}
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="flex-1 min-w-0">
 
             {/* STEP 1 */}
-            <p style={{ fontSize: 10, letterSpacing: '2.5px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', margin: '0 0 14px' }}>
-              STEP 1 — ROUTE &amp; VEHICLE
+            <p className="text-[10px] tracking-widest text-[#7a7055] uppercase font-sans mb-3.5">
+              STEP 1 — ROUTE & VEHICLE
             </p>
 
-            <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5 }}>
-              FROM
-            </label>
+            <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mb-1">FROM</label>
             <select
               value={fromCity}
               onChange={e => setFromCity(e.target.value)}
-              style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box', cursor: 'pointer', appearance: 'none', WebkitAppearance: 'none' }}
+              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans cursor-pointer appearance-none"
             >
               {fromCities.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
 
-            <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5, marginTop: 14 }}>
-              TO
-            </label>
+            <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mt-3.5 mb-1">TO</label>
             <select
               value={toCity}
               onChange={e => setToCity(e.target.value)}
-              style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box', cursor: 'pointer', appearance: 'none', WebkitAppearance: 'none' }}
+              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans cursor-pointer appearance-none"
             >
               <option value="">Select destination...</option>
               {toOptions.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
 
-            <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5, marginTop: 14 }}>
-              VEHICLE CLASS
-            </label>
+            <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mt-3.5 mb-1">VEHICLE CLASS</label>
             <select
               value={vehicleId}
               onChange={e => setVehicleId(e.target.value)}
-              style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box', cursor: 'pointer', appearance: 'none', WebkitAppearance: 'none' }}
+              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans cursor-pointer appearance-none"
             >
               <option value="">Select a vehicle...</option>
               {activeVehicles.map(v => {
@@ -161,110 +151,96 @@ export default function Booking() {
             </select>
 
             {/* STEP 2 */}
-            <p style={{ fontSize: 10, letterSpacing: '2.5px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', margin: '28px 0 14px' }}>
-              STEP 2 — DATE &amp; PASSENGERS
+            <p className="text-[10px] tracking-widest text-[#7a7055] uppercase font-sans mt-7 mb-3.5">
+              STEP 2 — DATE & PASSENGERS
             </p>
 
-            <div style={{ display: 'flex', gap: 16 }}>
-              <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5 }}>
-                  DATE
-                </label>
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mb-1">DATE</label>
                 <input
                   type="date"
                   min={TODAY}
                   value={date}
                   onChange={e => setDate(e.target.value)}
-                  style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box', colorScheme: 'dark' }}
+                  className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans"
                 />
               </div>
-              <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5 }}>
-                  PASSENGERS
-                </label>
+              <div className="flex-1">
+                <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mb-1">PASSENGERS</label>
                 <input
                   type="number"
                   min={1}
                   max={selectedVehicle?.seats || 10}
                   value={passengers}
                   onChange={e => setPassengers(Math.max(1, +e.target.value))}
-                  style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box', colorScheme: 'dark' }}
+                  className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans"
                 />
               </div>
             </div>
 
             {selectedVehicle?.seats && passengers > selectedVehicle.seats && (
-              <p style={{ color: '#c97050', fontSize: 12, marginTop: 6, fontFamily: 'Arial,sans-serif' }}>
+              <p className="text-[#c97050] text-[12px] mt-1.5 font-sans">
                 ⚠ Max {selectedVehicle.seats} passengers for this vehicle.
               </p>
             )}
 
             {/* STEP 3 */}
-            <p style={{ fontSize: 10, letterSpacing: '2.5px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', margin: '28px 0 14px' }}>
+            <p className="text-[10px] tracking-widest text-[#7a7055] uppercase font-sans mt-7 mb-3.5">
               STEP 3 — YOUR DETAILS
             </p>
 
-            <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5 }}>
-              FULL NAME
-            </label>
+            <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mb-1">FULL NAME</label>
             <input
               type="text"
               placeholder="Sophea Heng"
               value={name}
               onChange={e => setName(e.target.value)}
-              style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box' }}
+              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans"
             />
 
-            <div style={{ display: 'flex', gap: 16, marginTop: 14 }}>
-              <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5 }}>
-                  PHONE
-                </label>
+            <div className="flex gap-4 mt-3.5">
+              <div className="flex-1">
+                <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mb-1">PHONE</label>
                 <input
                   type="tel"
                   placeholder="+855 17 xxx xxx"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
-                  style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box' }}
+                  className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans"
                 />
               </div>
-              <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5 }}>
-                  EMAIL
-                </label>
+              <div className="flex-1">
+                <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mb-1">EMAIL</label>
                 <input
                   type="email"
                   placeholder="you@email.com"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box' }}
+                  className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans"
                 />
               </div>
             </div>
 
-            <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5, marginTop: 14 }}>
-              PICKUP ADDRESS
-            </label>
+            <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mt-3.5 mb-1">PICKUP ADDRESS</label>
             <input
               type="text"
               placeholder="Street / Hotel name"
               value={pickup}
               onChange={e => setPickup(e.target.value)}
-              style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box' }}
+              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans"
             />
 
-            <label style={{ display: 'block', fontSize: 10, letterSpacing: '2px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', marginBottom: 5, marginTop: 14 }}>
-              NOTES (OPTIONAL)
-            </label>
+            <label className="block text-[10px] tracking-wide text-[#7a7055] uppercase font-sans mt-3.5 mb-1">NOTES (OPTIONAL)</label>
             <textarea
               placeholder="Flight number, special requests..."
               value={notes}
               onChange={e => setNotes(e.target.value)}
-              style={{ width: '100%', background: '#1a1908', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 13, padding: '11px 14px', outline: 'none', fontFamily: 'Arial,sans-serif', boxSizing: 'border-box', resize: 'vertical', minHeight: 88 }}
+              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans resize-y min-h-[22] "
             />
 
             {error && (
-              <div style={{ marginTop: 16, padding: '10px 14px', background: '#2a1010', border: '1px solid #5a2020', color: '#e87070', fontSize: 12, fontFamily: 'Arial,sans-serif' }}>
+              <div className="mt-4 p-2.5 bg-[#2a1010] border border-[#5a2020] text-[#e87070] text-[12px] font-sans">
                 ⚠ {error}
               </div>
             )}
@@ -272,49 +248,42 @@ export default function Booking() {
           </div>
 
           {/* ── Summary sidebar ── */}
-          <div style={{ width: 235, flexShrink: 0, background: '#0d0c05', border: '1px solid #1e1d08', padding: '24px 20px', position: 'sticky', top: 24 }}>
+          <div className="w-[235px] flex-shrink-0 bg-[#0d0c05] border border-[#1e1d08] p-6 sticky top-6">
+            <p className="text-[15px] text-[#e8e0c8] font-serif font-normal mb-5">Booking Summary</p>
 
-            <p style={{ fontSize: 15, color: '#e8e0c8', marginBottom: 20, fontFamily: 'Georgia,serif', fontWeight: 'normal' }}>
-              Booking Summary
-            </p>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, fontSize: 12, fontFamily: 'Arial,sans-serif', gap: 8 }}>
-              <span style={{ color: '#7a7055' }}>Route</span>
-              <span style={{ color: '#e8e0c8', textAlign: 'right' }}>
-                {fromCity && toCity ? `${fromCity} → ${toCity}` : '—'}
-              </span>
+            <div className="flex justify-between items-start mb-3 text-[12px] font-sans gap-2">
+              <span className="text-[#7a7055]">Route</span>
+              <span className="text-[#e8e0c8] text-right">{fromCity && toCity ? `${fromCity} → ${toCity}` : '—'}</span>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, fontSize: 12, fontFamily: 'Arial,sans-serif', gap: 8 }}>
-              <span style={{ color: '#7a7055' }}>Vehicle</span>
-              <span style={{ color: '#e8e0c8', textAlign: 'right' }}>{selectedVehicle?.name || '—'}</span>
+            <div className="flex justify-between items-start mb-3 text-[12px] font-sans gap-2">
+              <span className="text-[#7a7055]">Vehicle</span>
+              <span className="text-[#e8e0c8] text-right">{selectedVehicle?.name || '—'}</span>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, fontSize: 12, fontFamily: 'Arial,sans-serif', gap: 8 }}>
-              <span style={{ color: '#7a7055' }}>Date</span>
-              <span style={{ color: '#e8e0c8', textAlign: 'right' }}>{fmtDate(date)}</span>
+            <div className="flex justify-between items-start mb-3 text-[12px] font-sans gap-2">
+              <span className="text-[#7a7055]">Date</span>
+              <span className="text-[#e8e0c8] text-right">{fmtDate(date)}</span>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, fontSize: 12, fontFamily: 'Arial,sans-serif', gap: 8 }}>
-              <span style={{ color: '#7a7055' }}>Passengers</span>
-              <span style={{ color: '#e8e0c8' }}>{passengers}</span>
+            <div className="flex justify-between items-start mb-3 text-[12px] font-sans gap-2">
+              <span className="text-[#7a7055]">Passengers</span>
+              <span className="text-[#e8e0c8]">{passengers}</span>
             </div>
 
-            <hr style={{ border: 'none', borderTop: '1px solid #1e1d08', margin: '16px 0' }} />
+            <hr className="border-t border-[#1e1d08] my-4" />
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-              <span style={{ fontSize: 15, color: '#e8e0c8', fontFamily: 'Georgia,serif' }}>Total</span>
-              <span style={{ fontSize: 18, color: '#c9a84c', fontWeight: 'bold', fontFamily: 'Arial,sans-serif' }}>
-                {price > 0 ? `$${price}` : '—'}
-              </span>
+            <div className="flex justify-between items-center mb-5">
+              <span className="text-[15px] text-[#e8e0c8] font-serif">Total</span>
+              <span className="text-[18px] text-[#c9a84c] font-bold font-sans">{price > 0 ? `$${price}` : '—'}</span>
             </div>
 
             <button
               onClick={handleSubmit}
               disabled={loading}
-              onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
-              onMouseLeave={e => e.currentTarget.style.opacity = loading ? '0.7' : '1'}
-              style={{ width: '100%', background: '#c9a84c', border: 'none', color: '#0d0c05', padding: '13px 0', fontSize: 11, fontWeight: 'bold', letterSpacing: '1.5px', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Arial,sans-serif', textTransform: 'uppercase', opacity: loading ? 0.7 : 1 }}
+              className={`w-full py-3 text-[11px] font-bold tracking-widest uppercase font-sans ${
+                loading ? 'opacity-70 cursor-not-allowed' : 'opacity-100 cursor-pointer'
+              } bg-[#c9a84c] text-[#0d0c05]`}
             >
               {loading ? 'Submitting...' : 'Confirm Booking'}
             </button>

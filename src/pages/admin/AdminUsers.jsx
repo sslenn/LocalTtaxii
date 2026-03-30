@@ -17,21 +17,20 @@ export default function AdminUsers() {
     ? new Date(d).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
     : '—';
 
-  const bookingCount = (userId) =>
-    bookings.filter(b => b.userId === userId).length;
+  const bookingCount = userId => bookings.filter(b => b.userId === userId).length;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a0900', color: '#e8e0c8', fontFamily: 'Georgia, serif', padding: '40px 40px 80px' }}>
+    <div className="min-h-screen bg-[#0a0900] text-[#e8e0c8] font-serif p-10 pb-20">
 
-      {/* ── Header ── */}
-      <div style={{ marginBottom: 36 }}>
-        <p style={{ fontSize: 10, letterSpacing: '3px', color: '#7a7055', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif', margin: '0 0 10px' }}>
+      {/* Header */}
+      <div className="mb-9">
+        <p className="text-[10px] tracking-widest text-[#7a7055] uppercase mb-2 font-sans">
           CUSTOMERS
         </p>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+        <div className="flex justify-between items-end">
           <div>
-            <div style={{ width: 28, height: 2, background: '#c9a84c', marginBottom: 14 }} />
-            <h1 style={{ fontSize: 38, fontWeight: 'normal', color: '#e8e0c8', margin: 0, fontFamily: 'Georgia,serif', letterSpacing: 0.5 }}>
+            <div className="w-7 h-[2px] bg-[#c9a84c] mb-3.5"></div>
+            <h1 className="text-4xl font-normal text-[#e8e0c8] font-serif tracking-[0.5px]">
               Users
             </h1>
           </div>
@@ -40,26 +39,24 @@ export default function AdminUsers() {
             placeholder="Search users..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            style={{ background: '#111008', border: '1px solid #2a2810', color: '#e8e0c8', fontSize: 12, padding: '9px 16px', outline: 'none', fontFamily: 'Arial,sans-serif', width: 200 }}
+            className="bg-[#111008] border border-[#2a2810] text-[#e8e0c8] text-[12px] px-4 py-2 outline-none font-sans w-52"
           />
         </div>
       </div>
 
-      {/* ── Table ── */}
-      <div style={{ border: '1px solid #1e1c08', overflow: 'hidden' }}>
+      {/* Table */}
+      <div className="border border-[#1e1c08] overflow-hidden">
 
         {/* Column headers */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 100px 100px 100px 100px', padding: '12px 20px', background: '#111008', borderBottom: '1px solid #1a1900' }}>
+        <div className="grid grid-cols-[1fr_1fr_1fr_100px_100px_100px_100px] p-3 bg-[#111008] border-b border-[#1a1900] text-[9px] tracking-widest uppercase text-[#5a5535] font-sans">
           {['NAME', 'EMAIL', 'PHONE', 'ROLE', 'JOINED', 'BOOKINGS', 'STATUS'].map(h => (
-            <span key={h} style={{ fontSize: 9, letterSpacing: '2px', color: '#5a5535', textTransform: 'uppercase', fontFamily: 'Arial,sans-serif' }}>
-              {h}
-            </span>
+            <span key={h}>{h}</span>
           ))}
         </div>
 
         {/* Rows */}
         {filtered.length === 0 ? (
-          <div style={{ padding: '40px 20px', textAlign: 'center', color: '#5a5535', fontFamily: 'Arial,sans-serif', fontSize: 13 }}>
+          <div className="p-10 text-center text-[#5a5535] text-sm font-sans">
             No users found.
           </div>
         ) : (
@@ -70,53 +67,34 @@ export default function AdminUsers() {
             return (
               <div
                 key={u.id}
-                style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 100px 100px 100px 100px', padding: '14px 20px', borderBottom: '1px solid #161505', alignItems: 'center', transition: 'background 0.15s' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#111008'}
-                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                className="grid grid-cols-[1fr_1fr_1fr_100px_100px_100px_100px] p-3 border-b border-[#161505] items-center hover:bg-[#111008] transition-colors"
               >
                 {/* Name */}
-                <span style={{ fontSize: 13, color: '#e8e0c8', fontFamily: 'Georgia,serif' }}>
-                  {u.name}
-                </span>
+                <span className="text-sm text-[#e8e0c8] font-serif">{u.name}</span>
 
                 {/* Email */}
-                <span style={{ fontSize: 12, color: '#9a9070', fontFamily: 'Arial,sans-serif' }}>
-                  {u.email}
-                </span>
+                <span className="text-sm text-[#9a9070] font-sans">{u.email}</span>
 
                 {/* Phone */}
-                <span style={{ fontSize: 12, color: '#9a9070', fontFamily: 'Arial,sans-serif' }}>
-                  {u.phone || '—'}
-                </span>
+                <span className="text-sm text-[#9a9070] font-sans">{u.phone || '—'}</span>
 
                 {/* Role badge */}
-                <span style={{
-                  fontSize: 10, fontFamily: 'Arial,sans-serif', letterSpacing: '1px',
-                  padding: '3px 10px', textTransform: 'uppercase', display: 'inline-block', width: 'fit-content',
-                  background: isAdmin ? 'rgba(201,168,76,0.12)' : 'rgba(100,130,180,0.1)',
-                  color:       isAdmin ? '#c9a84c'               : '#8aaad4',
-                  border:      `1px solid ${isAdmin ? 'rgba(201,168,76,0.35)' : 'rgba(100,130,180,0.3)'}`,
-                }}>
+                <span className={`text-[10px] font-sans tracking-tight px-3 py-1 uppercase w-20 flex items-center justify-center
+                  ${isAdmin
+                    ? 'bg-[rgba(201,168,76,0.12)] text-[#c9a84c] border border-[rgba(201,168,76,0.35)]'
+                    : 'bg-[rgba(100,130,180,0.1)] text-[#8aaad4] border border-[rgba(100,130,180,0.3)]'}
+                `}>
                   {u.role || 'customer'}
                 </span>
 
                 {/* Joined */}
-                <span style={{ fontSize: 12, color: '#9a9070', fontFamily: 'Arial,sans-serif' }}>
-                  {fmtJoined(u.createdAt)}
-                </span>
+                <span className="text-sm text-[#9a9070] font-sans">{fmtJoined(u.createdAt)}</span>
 
                 {/* Bookings count */}
-                <span style={{ fontSize: 13, color: '#e8e0c8', fontFamily: 'Arial,sans-serif' }}>
-                  {isAdmin ? '—' : count}
-                </span>
+                <span className="text-sm text-[#e8e0c8] font-serif">{isAdmin ? '—' : count}</span>
 
                 {/* Status */}
-                <span style={{
-                  fontSize: 10, fontFamily: 'Arial,sans-serif', letterSpacing: '2px',
-                  padding: '6px 12px', textTransform: 'uppercase', display: 'inline-block', width: 'fit-content',
-                  background: '#1a4a2e', color: '#4ade80',
-                  border: '1px solid #2a6040', borderRadius: '5px',
-                }}>
+                <span className="text-[10px] font-sans tracking-widest px-3 py-1 w-20 uppercase flex justify-center bg-[#1a4a2e] text-[#4ade80] border border-[#2a6040] rounded">
                   ACTIVE
                 </span>
               </div>

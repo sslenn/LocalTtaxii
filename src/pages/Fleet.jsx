@@ -6,141 +6,82 @@ export default function Fleet() {
   const navigate = useNavigate()
 
   return (
-    <div style={{ background: '#0A0908', minHeight: '100vh' }}>
+    <div className="bg-[#0A0908] min-h-screen">
 
-      {/* ── Header ── */}
-      <section style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '64px 40px 48px',
-      }}>
-        <div style={{
-          fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase',
-          color: '#C9A84C', marginBottom: '12px',
-        }}>
+      {/* Header */}
+      <section className="max-w-[1200px] mx-auto px-10 pt-16 pb-12">
+        <div className="text-[10px] tracking-[3px] uppercase text-[#C9A84C] mb-3">
           Our Fleet
         </div>
-        <h1 style={{
-          fontSize: 42, fontWeight: 300,
-          color: '#F0EBE0', marginBottom: '12px',
-        }}>
+        <h1 className="text-[42px] font-light text-[#F0EBE0] mb-3">
           Choose Your Vehicle
         </h1>
-        <p style={{ fontSize: 14, color: '#8A8070', maxWidth: '480px', lineHeight: 1.7 }}>
+        <p className="text-sm text-[#8A8070] max-w-[480px] leading-[1.7]">
           From budget-friendly SUVs to ultra-luxury VIP transfers — we have the perfect vehicle for every journey.
         </p>
       </section>
 
-      {/* ── Vehicle Grid ── */}
-      <section style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 40px 80px',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '16px',
-      }}>
+      {/* Vehicle Grid */}
+      <section className="max-w-[1200px] mx-auto px-10 pb-20 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
         {vehicles.map(v => (
-          <div key={v.id} style={{
-            background: '#141210',
-            border: '1px solid #2A2720',
-            borderRadius: '6px',
-            overflow: 'hidden',
-            transition: 'border-color 0.2s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.borderColor = '#C9A84C'}
-            onMouseLeave={e => e.currentTarget.style.borderColor = '#2A2720'}
+          <div
+            key={v.id}
+            className="bg-[#141210] border border-[#2A2720] rounded-md overflow-hidden transition-colors duration-200 hover:border-[#C9A84C]"
           >
-            {/* ── Vehicle image banner ── */}
-            <div style={{
-              background: '#1A1714',
-              height: '180px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderBottom: '1px solid #2A2720',
-              overflow: 'hidden',
-            }}>
+            {/* Vehicle image banner */}
+            <div className="bg-[#1A1714] h-[180px] flex items-center justify-center border-b border-[#2A2720] overflow-hidden">
               {v.image
                 ? <img
                     src={v.image}
                     alt={v.name}
-                    style={{ maxWidth: '100%', maxHeight: '150%', objectFit: 'cover' }}
+                    className="max-w-full max-h-[150%] object-cover"
                     onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
                   />
                 : null
               }
-              {/* Fallback emoji if image fails or doesn't exist */}
-              <span style={{
-                fontSize: 64,
-                display: v.image ? 'none' : 'block',
-              }}>
+              <span className={`text-[64px] ${v.image ? 'hidden' : 'block'}`}>
                 {v.emoji}
               </span>
             </div>
 
             {/* Info */}
-            <div style={{ padding: '24px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-2">
                 <div>
-                  <div style={{ fontSize: 18, fontWeight: 600, color: '#F0EBE0' }}>
-                    {v.name}
-                  </div>
-                  <div style={{ fontSize: 12, color: '#8A8070', marginTop: '2px' }}>
-                    {v.model}
-                  </div>
+                  <div className="text-[18px] font-semibold text-[#F0EBE0]">{v.name}</div>
+                  <div className="text-xs text-[#8A8070] mt-0.5">{v.model}</div>
                 </div>
-                <div style={{
-                  fontSize: 11,
-                  padding: '4px 10px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '20px',
-                  color: '#C9A84C',
-                  letterSpacing: '1px',
-                  textTransform: 'uppercase',
-                }}>
+                <div className="text-[11px] px-2.5 py-1 bg-[#0A0908] border border-[#2A2720] rounded-full text-[#C9A84C] tracking-[1px] uppercase">
                   {v.type}
                 </div>
               </div>
 
-              <p style={{
-                fontSize: 13, color: '#8A8070',
-                lineHeight: 1.6, marginBottom: '20px',
-              }}>
+              <p className="text-[13px] text-[#8A8070] leading-[1.6] mb-5">
                 {v.description}
               </p>
 
               {/* Specs */}
-              <div style={{
-                display: 'flex', gap: '20px',
-                padding: '16px 0',
-                borderTop: '1px solid #2A2720',
-                borderBottom: '1px solid #2A2720',
-                marginBottom: '20px',
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 18, marginBottom: '4px' }}>👥</div>
-                  <div style={{ fontSize: 12, color: '#F0EBE0', fontWeight: 600 }}>{v.seats}</div>
-                  <div style={{ fontSize: 10, color: '#8A8070' }}>Seats</div>
+              <div className="flex gap-5 py-4 border-t border-b border-[#2A2720] mb-5">
+                <div className="text-center">
+                  <div className="text-[18px] mb-1">👥</div>
+                  <div className="text-xs text-[#F0EBE0] font-semibold">{v.seats}</div>
+                  <div className="text-[10px] text-[#8A8070]">Seats</div>
                 </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 18, marginBottom: '4px' }}>🧳</div>
-                  <div style={{ fontSize: 12, color: '#F0EBE0', fontWeight: 600 }}>{v.luggage}</div>
-                  <div style={{ fontSize: 10, color: '#8A8070' }}>Bags</div>
+                <div className="text-center">
+                  <div className="text-[18px] mb-1">🧳</div>
+                  <div className="text-xs text-[#F0EBE0] font-semibold">{v.luggage}</div>
+                  <div className="text-[10px] text-[#8A8070]">Bags</div>
                 </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 18, marginBottom: '4px' }}>✅</div>
-                  <div style={{ fontSize: 12, color: v.available ? '#27AE60' : '#C0392B', fontWeight: 600 }}>
+                <div className="text-center">
+                  <div className="text-[18px] mb-1">✅</div>
+                  <div className={`text-xs font-semibold ${v.available ? 'text-[#27AE60]' : 'text-[#C0392B]'}`}>
                     {v.available ? 'Yes' : 'No'}
                   </div>
-                  <div style={{ fontSize: 10, color: '#8A8070' }}>Available</div>
+                  <div className="text-[10px] text-[#8A8070]">Available</div>
                 </div>
-                <div style={{ textAlign: 'center', marginLeft: 'auto' }}>
-                  <div style={{ fontSize: 20, color: '#C9A84C', fontWeight: 700 }}>
-                    {v.price_tag}
-                  </div>
-                  <div style={{ fontSize: 10, color: '#8A8070' }}>Starting from</div>
+                <div className="text-center ml-auto">
+                  <div className="text-[20px] text-[#C9A84C] font-bold">{v.price_tag}</div>
+                  <div className="text-[10px] text-[#8A8070]">Starting from</div>
                 </div>
               </div>
 
@@ -148,15 +89,11 @@ export default function Fleet() {
               <button
                 onClick={() => navigate('/book', { state: { vehicleId: v.id } })}
                 disabled={!v.available}
-                style={{
-                  width: '100%', padding: '12px',
-                  background: v.available ? '#C9A84C' : '#2A2720',
-                  border: 'none', borderRadius: '4px',
-                  color: v.available ? '#000' : '#4A4438',
-                  fontSize: 13, fontWeight: 700,
-                  letterSpacing: '1px', textTransform: 'uppercase',
-                  cursor: v.available ? 'pointer' : 'not-allowed',
-                }}
+                className={`w-full py-3 rounded text-[13px] font-bold tracking-[1px] uppercase border-none transition-colors
+                  ${v.available
+                    ? 'bg-[#C9A84C] text-black cursor-pointer'
+                    : 'bg-[#2A2720] text-[#4A4438] cursor-not-allowed'
+                  }`}
               >
                 {v.available ? 'Book This Vehicle' : 'Unavailable'}
               </button>

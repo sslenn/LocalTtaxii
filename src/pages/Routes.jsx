@@ -9,42 +9,24 @@ const VEHICLE_COLS = [
   { label: 'VIP / Alphard 2020', key: 'v5' }
 ]
 
-
 export default function Routes() {
-
-  
   const { routes } = useApp()
 
-  // saving time and improving code readability by seeding data and fetching routes in a single useEffect
   return (
-    <div style={{ paddingTop: '72px', minHeight: '100vh', background: '#0b0b0b' }}>
+    <div className="pt-[72px] min-h-screen bg-[#0b0b0b]">
 
       {/* Header */}
-      <section
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%), #111',
-          borderBottom: '1px solid #141414',
-          padding: '4rem 2rem 3rem'
-        }}
+      <section className="border-b border-[#141414] px-8 pt-16 pb-12"
+        style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%), #111' }}
       >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <p style={{ color: '#c9a84c', letterSpacing: '2px', fontSize: '0.75rem' }}>
+        <div className="max-w-[1200px] mx-auto">
+          <p className="text-[#c9a84c] tracking-[2px] text-[0.75rem]">
             Route Archive
           </p>
-
-          <h1
-            style={{
-              fontFamily: 'Cormorant Garamond',
-              fontSize: '4rem',
-              marginBottom: '0.5rem',
-              color: 'white'
-            }}
-          >
+          <h1 className="font-['Cormorant_Garamond'] text-6xl mb-2 text-white">
             Regional Transfers
           </h1>
-
-          <p style={{ color: '#888', maxWidth: '500px', fontSize: '0.8rem' }}>
+          <p className="text-[#888] max-w-[500px] text-[0.8rem]">
             Cross-province expeditions with fixed-rate transparency.
             All-inclusive pricing, door-to-door.
           </p>
@@ -52,52 +34,17 @@ export default function Routes() {
       </section>
 
       {/* Table */}
-      <section
-        style={{
-          padding: '3rem 2rem',
-          maxWidth: '1200px',
-          margin: '0 auto',
-          marginTop: '2rem'
-        }}
-      >
-        <div
-          style={{
-            border: '1px solid #1a1a1a',
-            borderRadius: '6px',
-            overflow: 'hidden',
-            background: '#0d0d0d',
-            padding: '1rem',
-            margin: '1rem'
-          }}
-        >
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              color: 'white'
-            }}
-          >
+      <section className="px-8 py-12 max-w-[1200px] mx-auto mt-8">
+        <div className="border border-[#1a1a1a] rounded-md overflow-hidden bg-[#0d0d0d] p-4 m-4">
+          <table className="w-full border-collapse text-white">
             <thead>
-              <tr
-                style={{
-                  borderBottom: '1px solid #1a1a1a',
-                  fontSize: '11px',
-                  letterSpacing: '1px',
-                  color: '#777'
-                }}
-              >
-                <th style={{ padding: '14px', textAlign: 'left' }}>#</th>
-                <th style={{ textAlign: 'left' }}>Journey</th>
-
+              <tr className="border-b border-[#1a1a1a] text-[11px] tracking-[1px] text-[#777]">
+                <th className="p-[14px] text-left">#</th>
+                <th className="text-left">Journey</th>
                 {VEHICLE_COLS.map(c => (
-                  <th key={c.key} style={{ textAlign: 'right' }}>
-                    {c.label}
-                  </th>
+                  <th key={c.key} className="text-right">{c.label}</th>
                 ))}
-
-                <th style={{ textAlign: 'right', paddingRight: '20px' }}>
-                  Action
-                </th>
+                <th className="text-right pr-5">Action</th>
               </tr>
             </thead>
 
@@ -106,33 +53,17 @@ export default function Routes() {
                 routes.map((r, i) => (
                   <tr
                     key={r.id}
-                    style={{
-                      borderBottom: '1px solid #141414',
-                      transition: '0.2s'
-                    }}
-                    onMouseEnter={e =>
-                      (e.currentTarget.style.background = '#111')
-                    }
-                    onMouseLeave={e =>
-                      (e.currentTarget.style.background = 'transparent')
-                    }
+                    className="border-b border-[#141414] transition-colors duration-200 hover:bg-[#111]"
                   >
-                    <td style={{ padding: '24px', color: '#666' }}>
+                    <td className="p-6 text-[#666]">
                       {String(i + 1).padStart(2, '0')}
                     </td>
 
                     {/* Journey */}
                     <td>
-                      <div
-                        style={{
-                          lineHeight: '1.3',
-                          fontFamily: 'Cormorant Garamond'
-                        }}
-                      >
-                        <div style={{ fontWeight: 500 }}>{r.from}</div>
-                        <div style={{ fontSize: '12px', color: '#666' }}>
-                          → {r.to}
-                        </div>
+                      <div className="leading-snug font-['Cormorant_Garamond']">
+                        <div className="font-medium">{r.from}</div>
+                        <div className="text-xs text-[#666]">→ {r.to}</div>
                       </div>
                     </td>
 
@@ -140,30 +71,17 @@ export default function Routes() {
                     {VEHICLE_COLS.map(c => (
                       <td
                         key={c.key}
-                        style={{
-                          textAlign: 'right',
-                          color: '#c9a84c',
-                          fontFamily: 'Cormorant Garamond',
-                          fontSize: '15px'
-                        }}
+                        className="text-right text-[#c9a84c] font-['Cormorant_Garamond'] text-[15px]"
                       >
                         ${r.prices?.[c.key] ?? '-'}
                       </td>
                     ))}
 
                     {/* Book button */}
-                    <td style={{ textAlign: 'right', paddingRight: '20px' }}>
+                    <td className="text-right pr-5">
                       <Link
                         to={`/book?route=${r.id}`}
-                        style={{
-                          border: '1px solid #c9a84c',
-                          padding: '6px 16px',
-                          fontSize: '11px',
-                          color: '#c9a84c',
-                          textDecoration: 'none',
-                          letterSpacing: '1px',
-                          transition: '0.2s'
-                        }}
+                        className="border border-[#c9a84c] px-4 py-1.5 text-[11px] text-[#c9a84c] no-underline tracking-[1px] transition-colors duration-200 hover:bg-[#c9a84c] hover:text-black"
                       >
                         BOOK
                       </Link>
@@ -172,14 +90,7 @@ export default function Routes() {
                 ))
               ) : (
                 <tr>
-                  <td
-                    colSpan="7"
-                    style={{
-                      textAlign: 'center',
-                      padding: '40px',
-                      color: '#777'
-                    }}
-                  >
+                  <td colSpan="7" className="text-center py-10 text-[#777]">
                     No routes available
                   </td>
                 </tr>

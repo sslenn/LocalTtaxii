@@ -40,54 +40,34 @@ export default function Register() {
     navigate('/')
   }
 
+  const inputClass = "w-full px-3.5 py-2.5 bg-[#0A0908] border border-[#2A2720] rounded text-[#F0EBE0] text-[13px] outline-none"
+  const labelClass = "block text-[11px] tracking-[1.5px] uppercase text-[#8A8070] mb-1.5"
+
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: '#0A0908',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '40px 20px',
-    }}>
-      <div style={{ width: '100%', maxWidth: '380px' }}>
+    <div className="min-h-screen bg-[#0A0908] flex items-center justify-center px-5 py-10">
+      <div className="w-full max-w-[380px]">
 
         {/* Logo */}
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <div style={{
-              width: 44, height: 44,
-              background: '#C9A84C',
-              borderRadius: '4px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 24, fontWeight: 700, color: '#000',
-              margin: '0 auto 12px',
-            }}>T</div>
-            <span style={{ fontSize: 22, fontWeight: 600, color: '#F0EBE0' }}>
-              LocalT<span style={{ color: '#C9A84C' }}>taxi</span>
+        <div className="text-center mb-8">
+          <Link to="/" className="no-underline">
+            <div className="w-11 h-11 bg-[#C9A84C] rounded flex items-center justify-center text-2xl font-bold text-black mx-auto mb-3">
+              T
+            </div>
+            <span className="text-[22px] font-semibold text-[#F0EBE0]">
+              LocalT<span className="text-[#C9A84C]">taxi</span>
             </span>
           </Link>
-          <p style={{ fontSize: 13, color: '#8A8070', marginTop: '8px' }}>
-            Create your account
-          </p>
+          <p className="text-[13px] text-[#8A8070] mt-2">Create your account</p>
         </div>
 
         {/* Form Card */}
-        <div style={{
-          background: '#141210',
-          border: '1px solid #2A2720',
-          borderRadius: '6px',
-          padding: '32px',
-        }}>
+        <div className="bg-[#141210] border border-[#2A2720] rounded-md p-8">
           <form onSubmit={handleSubmit}>
 
             {/* Name */}
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{
-                display: 'block', fontSize: 11,
-                letterSpacing: '1.5px', textTransform: 'uppercase',
-                color: '#8A8070', marginBottom: '6px',
-              }}>
-                Full Name <span style={{ color: '#C9A84C' }}>*</span>
+            <div className="mb-4">
+              <label className={labelClass}>
+                Full Name <span className="text-[#C9A84C]">*</span>
               </label>
               <input
                 type="text"
@@ -95,25 +75,14 @@ export default function Register() {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Your full name"
-                style={{
-                  width: '100%', padding: '10px 14px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '4px',
-                  color: '#F0EBE0', fontSize: 13,
-                  outline: 'none', boxSizing: 'border-box',
-                }}
+                className={inputClass}
               />
             </div>
 
             {/* Email */}
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{
-                display: 'block', fontSize: 11,
-                letterSpacing: '1.5px', textTransform: 'uppercase',
-                color: '#8A8070', marginBottom: '6px',
-              }}>
-                Email <span style={{ color: '#C9A84C' }}>*</span>
+            <div className="mb-4">
+              <label className={labelClass}>
+                Email <span className="text-[#C9A84C]">*</span>
               </label>
               <input
                 type="email"
@@ -121,51 +90,27 @@ export default function Register() {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="you@email.com"
-                style={{
-                  width: '100%', padding: '10px 14px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '4px',
-                  color: '#F0EBE0', fontSize: 13,
-                  outline: 'none', boxSizing: 'border-box',
-                }}
+                className={inputClass}
               />
             </div>
 
             {/* Phone */}
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{
-                display: 'block', fontSize: 11,
-                letterSpacing: '1.5px', textTransform: 'uppercase',
-                color: '#8A8070', marginBottom: '6px',
-              }}>
-                Phone
-              </label>
+            <div className="mb-4">
+              <label className={labelClass}>Phone</label>
               <input
                 type="text"
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
                 placeholder="012 345 678"
-                style={{
-                  width: '100%', padding: '10px 14px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '4px',
-                  color: '#F0EBE0', fontSize: 13,
-                  outline: 'none', boxSizing: 'border-box',
-                }}
+                className={inputClass}
               />
             </div>
 
             {/* Password */}
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{
-                display: 'block', fontSize: 11,
-                letterSpacing: '1.5px', textTransform: 'uppercase',
-                color: '#8A8070', marginBottom: '6px',
-              }}>
-                Password <span style={{ color: '#C9A84C' }}>*</span>
+            <div className="mb-4">
+              <label className={labelClass}>
+                Password <span className="text-[#C9A84C]">*</span>
               </label>
               <input
                 type="password"
@@ -173,25 +118,14 @@ export default function Register() {
                 value={form.password}
                 onChange={handleChange}
                 placeholder="Min. 6 characters"
-                style={{
-                  width: '100%', padding: '10px 14px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '4px',
-                  color: '#F0EBE0', fontSize: 13,
-                  outline: 'none', boxSizing: 'border-box',
-                }}
+                className={inputClass}
               />
             </div>
 
             {/* Confirm Password */}
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{
-                display: 'block', fontSize: 11,
-                letterSpacing: '1.5px', textTransform: 'uppercase',
-                color: '#8A8070', marginBottom: '6px',
-              }}>
-                Confirm Password <span style={{ color: '#C9A84C' }}>*</span>
+            <div className="mb-6">
+              <label className={labelClass}>
+                Confirm Password <span className="text-[#C9A84C]">*</span>
               </label>
               <input
                 type="password"
@@ -199,36 +133,25 @@ export default function Register() {
                 value={form.confirm}
                 onChange={handleChange}
                 placeholder="••••••••"
-                style={{
-                  width: '100%', padding: '10px 14px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '4px',
-                  color: '#F0EBE0', fontSize: 13,
-                  outline: 'none', boxSizing: 'border-box',
-                }}
+                className={inputClass}
               />
             </div>
 
             {/* Submit */}
-            <button type="submit" disabled={loading} style={{
-              width: '100%', padding: '12px',
-              background: '#C9A84C',
-              border: 'none', borderRadius: '4px',
-              color: '#000', fontSize: 13,
-              fontWeight: 700, cursor: 'pointer',
-              letterSpacing: '1px',
-              opacity: loading ? 0.7 : 1,
-            }}>
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-3 bg-[#C9A84C] rounded text-black text-[13px] font-bold tracking-[1px] cursor-pointer border-none transition-opacity ${loading ? 'opacity-70' : 'opacity-100'}`}
+            >
               {loading ? 'Creating account...' : 'CREATE ACCOUNT'}
             </button>
 
           </form>
 
           {/* Login link */}
-          <p style={{ textAlign: 'center', marginTop: '20px', fontSize: 13, color: '#8A8070' }}>
+          <p className="text-center mt-5 text-[13px] text-[#8A8070]">
             Already have an account?{' '}
-            <Link to="/login" style={{ color: '#C9A84C', textDecoration: 'none', fontWeight: 500 }}>
+            <Link to="/login" className="text-[#C9A84C] no-underline font-medium">
               Sign in
             </Link>
           </p>

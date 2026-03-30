@@ -27,150 +27,84 @@ export default function Login() {
       return
     }
 
-    // Check role from localStorage
     const user = JSON.parse(localStorage.getItem('tt_current_user'))
     toast('Welcome back ' + user.name + '!', 'success')
-
-    if (user.role === 'admin') {
-      navigate('/admin')
-    } else {
-      navigate('/')
-    }
+    navigate(user.role === 'admin' ? '/admin' : '/')
   }
 
+  const inputClass = "w-full px-3.5 py-2.5 bg-[#0A0908] border border-[#2A2720] rounded text-[#F0EBE0] text-[13px] outline-none box-border"
+  const labelClass = "block text-[11px] tracking-[1.5px] uppercase text-[#8A8070] mb-1.5"
+
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: '#0A0908',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '40px 20px',
-    }}>
-      <div style={{
-        width: '100%',
-        maxWidth: '380px',
-      }}>
+    <div className="min-h-screen bg-[#0A0908] flex items-center justify-center px-5 py-10">
+      <div className="w-full max-w-[380px]">
 
         {/* Logo */}
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <div style={{
-              width: 44, height: 44,
-              background: '#C9A84C',
-              borderRadius: '4px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 24, fontWeight: 700, color: '#000',
-              margin: '0 auto 12px',
-            }}>T</div>
-            <span style={{ fontSize: 22, fontWeight: 600, color: '#F0EBE0' }}>
-              LocalT<span style={{ color: '#C9A84C' }}>taxi</span>
+        <div className="text-center mb-8">
+          <Link to="/" className="no-underline">
+            <div className="w-11 h-11 bg-[#C9A84C] rounded flex items-center justify-center text-2xl font-bold text-black mx-auto mb-3">
+              T
+            </div>
+            <span className="text-[22px] font-semibold text-[#F0EBE0]">
+              LocalT<span className="text-[#C9A84C]">taxi</span>
             </span>
           </Link>
-          <p style={{ fontSize: 13, color: '#8A8070', marginTop: '8px' }}>
-            Sign in to your account
-          </p>
+          <p className="text-[13px] text-[#8A8070] mt-2">Sign in to your account</p>
         </div>
 
         {/* Form Card */}
-        <div style={{
-          background: '#141210',
-          border: '1px solid #2A2720',
-          borderRadius: '6px',
-          padding: '32px',
-        }}>
+        <div className="bg-[#141210] border border-[#2A2720] rounded-md p-8">
           <form onSubmit={handleSubmit}>
 
             {/* Email */}
-            <div style={{ marginBottom: '16px' }}>
-              <label style={{
-                display: 'block', fontSize: 11,
-                letterSpacing: '1.5px', textTransform: 'uppercase',
-                color: '#8A8070', marginBottom: '6px',
-              }}>
-                Email
-              </label>
+            <div className="mb-4">
+              <label className={labelClass}>Email</label>
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
                 placeholder="you@email.com"
-                style={{
-                  width: '100%', padding: '10px 14px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '4px',
-                  color: '#F0EBE0', fontSize: 13,
-                  outline: 'none',
-                  boxSizing: 'border-box',
-                }}
+                className={inputClass}
               />
             </div>
 
             {/* Password */}
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{
-                display: 'block', fontSize: 11,
-                letterSpacing: '1.5px', textTransform: 'uppercase',
-                color: '#8A8070', marginBottom: '6px',
-              }}>
-                Password
-              </label>
+            <div className="mb-6">
+              <label className={labelClass}>Password</label>
               <input
                 type="password"
                 name="password"
                 value={form.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                style={{
-                  width: '100%', padding: '10px 14px',
-                  background: '#0A0908',
-                  border: '1px solid #2A2720',
-                  borderRadius: '4px',
-                  color: '#F0EBE0', fontSize: 13,
-                  outline: 'none',
-                  boxSizing: 'border-box',
-                }}
+                className={inputClass}
               />
             </div>
 
             {/* Submit */}
-            <button type="submit" disabled={loading} style={{
-              width: '100%', padding: '12px',
-              background: '#C9A84C',
-              border: 'none', borderRadius: '4px',
-              color: '#000', fontSize: 13,
-              fontWeight: 700, cursor: 'pointer',
-              letterSpacing: '1px',
-              opacity: loading ? 0.7 : 1,
-            }}>
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-3 bg-[#C9A84C] rounded text-black text-[13px] font-bold tracking-[1px] cursor-pointer border-none transition-opacity ${loading ? 'opacity-70' : 'opacity-100'}`}
+            >
               {loading ? 'Signing in...' : 'SIGN IN'}
             </button>
 
           </form>
 
           {/* Register link */}
-          <p style={{ textAlign: 'center', marginTop: '20px', fontSize: 13, color: '#8A8070' }}>
+          <p className="text-center mt-5 text-[13px] text-[#8A8070]">
             No account?{' '}
-            <Link to="/register" style={{ color: '#C9A84C', textDecoration: 'none', fontWeight: 500 }}>
+            <Link to="/register" className="text-[#C9A84C] no-underline font-medium">
               Register here
             </Link>
           </p>
         </div>
 
         {/* Demo credentials */}
-        <div style={{
-          marginTop: '16px',
-          padding: '12px 16px',
-          background: '#141210',
-          border: '1px dashed #2A2720',
-          borderRadius: '4px',
-          fontSize: 11,
-          color: '#8A8070',
-          lineHeight: 1.8,
-        }}>
-          <span style={{ color: '#C9A84C', fontWeight: 600 }}>Demo:</span>{' '}
+        <div className="mt-4 px-4 py-3 bg-[#141210] border border-dashed border-[#2A2720] rounded text-[11px] text-[#8A8070] leading-[1.8]">
+          <span className="text-[#C9A84C] font-semibold">Demo:</span>{' '}
           admin@localttaxi.com / admin123
         </div>
 
