@@ -83,6 +83,8 @@ export default function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 
+          {/* // Admin layout with protected admin routes */}
+        
           <Route
             path="admin"
             element={
