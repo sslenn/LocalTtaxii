@@ -77,8 +77,7 @@ export default function App() {
             </Route>
           </Route>
 
-          {/* // Auth routes */}
-
+          // Auth routes
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 
