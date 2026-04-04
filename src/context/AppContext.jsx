@@ -24,7 +24,7 @@ const SEED_ROUTES = [
   { id: "r4",  from: "Phnom Penh",    to: "Kampot / Kep",      prices: { v1: 59,  v2: 89,  v3: 89,  v4: 109, v5: 189 } },
   { id: "r5",  from: "Phnom Penh",    to: "Poipet",            prices: { v1: 109, v2: 149, v3: 149, v4: 199, v5: 419 } },
   { id: "r6",  from: "Phnom Penh",    to: "Bavet",             prices: { v1: 59,  v2: 89,  v3: 89,  v4: 109, v5: 179 } },
-  { id: "r7",  from: "Phnom Penh",    to: "ChreyThom",         prices: { v1: 49,  v2: 79,  v3: 79,  v4: 89,  v5: 179 } },
+  { id: "r7",  from:"Phnom Penh",    to: "ChreyThom",         prices: { v1: 49,  v2: 79,  v3: 79,  v4: 89,  v5: 179 } },
   { id: "r8",  from: "Poipet",        to: "Siem Reap Airport", prices: { v1: 69,  v2: 89,  v3: 89,  v4: 199, v5: 249 } },
   { id: "r9",  from: "Sihanoukville", to: "Poipet",            prices: { v1: 169, v2: 249, v3: 249, v4: 279, v5: 599 } },
   { id: "r10", from: "Sihanoukville", to: "Bavet",             prices: { v1: 129, v2: 189, v3: 189, v4: 209, v5: 309 } },
@@ -203,30 +203,32 @@ export function AppProvider({ children }) {
     totalUsers: users.filter((u) => u.role !== "admin").length,
   };
 
+
+  const value = {
+    currentUser,
+    login,
+    register,
+    logout,
+    updateProfile,
+    users,
+    vehicles,
+    routes,
+    bookings,
+    myBookings,
+    stats,
+    createBooking,
+    updateBookingStatus,
+    cancelBooking,
+    addVehicle,
+    updateVehicle,
+    deleteVehicle,
+    toast,
+    toasts
+  };
+
   return (
     <AppContext.Provider
-      value={{
-        currentUser,
-        login,
-        register,
-        logout,
-        updateProfile,
-        users,
-        vehicles,
-        routes,
-        bookings,
-        myBookings,
-        stats,
-        createBooking,
-        updateBookingStatus,
-        cancelBooking,
-        addVehicle,
-        updateVehicle,
-        deleteVehicle,
-        toast,
-        toasts,
-      }}
-    >
+      value={value}>
       {children}
     </AppContext.Provider>
   );
