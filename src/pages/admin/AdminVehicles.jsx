@@ -29,7 +29,37 @@ export default function AdminVehicles() {
   function handleImageUpload(e) {
     const file = e.target.files?.[0]; if (!file) return;
     const reader = new FileReader();
-    reader.onload = ev => upd('image', ev.target.result);
+     reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX_WIDTH  = 800;
+        const MAX_HEIGHT = 500;
+ 
+        let width  = img.width;
+        let height = img.height;
+ 
+        // Scale down proportionally if too large
+        if (width > MAX_WIDTH) {
+          height = Math.round((height * MAX_WIDTH) / width);
+          width  = MAX_WIDTH;
+        }
+        if (height > MAX_HEIGHT) {
+          width  = Math.round((width * MAX_HEIGHT) / height);
+          height = MAX_HEIGHT;
+        }
+ 
+        // Draw resized image onto canvas
+        const canvas = document.createElement('canvas');
+        canvas.width  = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+ 
+        // Compress to JPEG at 80% quality
+        const resized = canvas.toDataURL('image/jpeg', 0.8);
+        upd('image', resized);
+      };
+      img.src = ev.target.result;
+    };
     reader.readAsDataURL(file);
   }
 
