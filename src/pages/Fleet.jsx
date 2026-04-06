@@ -28,43 +28,18 @@ export default function Fleet() {
             key={v.id}
             className="bg-[#141210] border border-[#2A2720] rounded-md overflow-hidden transition-colors duration-200 hover:border-[#C9A84C]"
           >
-<<<<<<< HEAD
             {/* Vehicle image banner */}
             <div className="bg-[#1A1714] h-45 flex items-center justify-center border-b border-[#2A2720] overflow-hidden">
-=======
-            {/* ── Vehicle image banner ── */}
-            <div style={{
-              background: '#1A1714',
-              height: '180px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderBottom: '1px solid #2A2720',
-              overflow: 'hidden',
-            }}>
->>>>>>> da48fed (add default users)
               {v.image
                 ? <img
                     src={v.image}
                     alt={v.name}
-<<<<<<< HEAD
                     className="max-w-full max-h-[150%] object-cover"
-=======
-                    style={{ maxWidth: '100%', maxHeight: '150%', objectFit: 'cover' }}
->>>>>>> da48fed (add default users)
                     onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
                   />
                 : null
               }
-<<<<<<< HEAD
               <span className={`text-[64px] ${v.image ? 'hidden' : 'block'}`}>
-=======
-              {/* Fallback emoji if image fails or doesn't exist */}
-              <span style={{
-                fontSize: 64,
-                display: v.image ? 'none' : 'block',
-              }}>
->>>>>>> da48fed (add default users)
                 {v.emoji}
               </span>
             </div>
