@@ -14,14 +14,19 @@ export function seedData() {
   if (!localStorage.getItem(KEYS.bookings)) localStorage.setItem(KEYS.bookings, JSON.stringify(initialBookings))
 }
 
+// Getters and setters for each data type
+// Vehicles
 export const getVehicles  = ()  => JSON.parse(localStorage.getItem(KEYS.vehicles)) || []
 export const saveVehicles = (v) => localStorage.setItem(KEYS.vehicles, JSON.stringify(v))
 
+// Routes
 export const getRoutes    = ()  => JSON.parse(localStorage.getItem(KEYS.routes))   || []
 export const saveRoutes   = (r) => localStorage.setItem(KEYS.routes,   JSON.stringify(r))
 
+// Users
 export const getUsers     = ()  => JSON.parse(localStorage.getItem(KEYS.users))    || []
 export const saveUsers    = (u) => localStorage.setItem(KEYS.users,    JSON.stringify(u))
 
+// Bookings
 export const getBookings  = ()  => JSON.parse(localStorage.getItem(KEYS.bookings)) || []
 export const saveBookings = (b) => localStorage.setItem(KEYS.bookings, JSON.stringify(b))

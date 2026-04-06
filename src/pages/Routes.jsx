@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 
+// Define vehicle columns for the routes table
 const VEHICLE_COLS = [
   { label: 'SUV', key: 'v1' },
   { label: 'Starex', key: 'v2' },
@@ -10,6 +11,7 @@ const VEHICLE_COLS = [
 ]
 
 export default function Routes() {
+  // Access routes from global context
   const { routes } = useApp()
 
   return (

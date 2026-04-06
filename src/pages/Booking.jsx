@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
 const TODAY = new Date().toISOString().split('T')[0];
+// '2026-04-06T06:00:00.000Z'
+// '2026-04-06'
 
 export default function Booking() {
   const { currentUser, routes, vehicles, createBooking, toast } = useApp();
@@ -13,13 +15,16 @@ export default function Booking() {
     if (!currentUser) navigate('/login', { state: { from: '/booking' } });
   }, [currentUser]);
 
+ // Filter out inactive routes and vehicles
   const activeRoutes   = routes.filter(r => r.active !== false);
   const activeVehicles = vehicles.filter(v => v.available !== false);
 
+ // Prefill form if coming from a route/vehicle selection
   const prefill      = location.state || {};
   const prefillRoute = activeRoutes.find(r => r.id === prefill.routeId);
   const fromCities   = [...new Set(activeRoutes.map(r => r.from))];
 
+ // Initialize form state with prefill or defaults
   const [fromCity,   setFromCity]   = useState(prefillRoute?.from || fromCities[0] || '');
   const [toCity,     setToCity]     = useState(prefillRoute?.to   || '');
   const [vehicleId,  setVehicleId]  = useState(prefill.vehicleId  || '');
@@ -33,23 +38,28 @@ export default function Booking() {
   const [error,      setError]      = useState('');
   const [loading,    setLoading]    = useState(false);
 
+ // Update destination options when fromCity changes
   const toOptions = activeRoutes.filter(r => r.from === fromCity).map(r => r.to);
 
+  // Auto-select first available destination when fromCity changes
   useEffect(() => {
     const opts = activeRoutes.filter(r => r.from === fromCity).map(r => r.to);
     setToCity(opts[0] || '');
   }, [fromCity]);
 
+  // Calculate price based on selected route and vehicle
   const selectedRoute   = activeRoutes.find(r => r.from === fromCity && r.to === toCity);
   const selectedVehicle = activeVehicles.find(v => v.id === vehicleId);
   const price = selectedRoute && selectedVehicle
     ? (selectedRoute.prices?.[selectedVehicle.id] ?? 0)
     : 0;
 
+  // Helper to format date for summary display
   const fmtDate = d => d
     ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
+  // Form submission handler with validation
   function handleSubmit() {
     setError('');
     if (!fromCity || !toCity) return setError('Please select a valid route.');

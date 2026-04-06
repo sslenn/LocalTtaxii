@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
 export default function Profile() {
+  // Access user data and actions from global context
   const { currentUser, updateProfile, toast } = useApp();
   const navigate = useNavigate();
 
@@ -10,14 +11,17 @@ export default function Profile() {
     if (!currentUser) navigate('/login', { state: { from: '/profile' } });
   }, [currentUser]);
 
+  // Local state for form fields and avatar
   const [name,   setName]   = useState(currentUser?.name  || '');
   const [phone,  setPhone]  = useState(currentUser?.phone || '');
   const [email,  setEmail]  = useState(currentUser?.email || '');
   const [saved,  setSaved]  = useState(false);
   const [avatar, setAvatar] = useState(currentUser?.avatar || null);
   const fileRef = useRef(null);
+  // Simple email validation regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+  // Handle avatar file selection and update
   function handleAvatarChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -32,12 +36,15 @@ export default function Profile() {
 
   if (!currentUser) return null;
 
+  // Get initial for avatar placeholder
   const initial = (currentUser.name || 'U')[0].toUpperCase();
 
+  // Format member since date
   const memberSince = currentUser.createdAt
     ? new Date(currentUser.createdAt).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
     : 'Member';
 
+  // Handle form submission with validation
   function handleSave() {
     if (!name.trim()) { toast('Name cannot be empty.', 'error'); return; }
     if (!email.trim()) { toast('Email cannot be empty.', 'error'); return; }
@@ -48,6 +55,7 @@ export default function Profile() {
     toast('Profile updated successfully!', 'success');
   }
 
+  // Common classes for inputs and labels
   const inputClass = "w-full bg-[#0e0d07] border border-[#2a2810] text-[#e8e0c8] text-[13px] px-3.5 py-2.5 outline-none font-sans box-border"
   const labelClass = "block text-[10px] tracking-[2px] text-[#7a7055] uppercase font-sans mb-1.5"
 

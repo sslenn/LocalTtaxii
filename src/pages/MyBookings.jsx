@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
+// Define styles for different booking statuses
 const STATUS_STYLES = {
   confirmed: { className: 'bg-[rgba(80,160,80,0.15)] text-[#6abf6a] border border-[rgba(80,160,80,0.3)]', label: 'CONFIRMED' },
   pending:   { className: 'bg-[rgba(201,168,76,0.12)] text-[#c9a84c] border border-[rgba(201,168,76,0.3)]', label: 'PENDING' },
@@ -10,6 +11,7 @@ const STATUS_STYLES = {
 };
 
 export default function MyBookings() {
+  // Access user data and actions from global context
   const { currentUser, myBookings, cancelBooking } = useApp();
   const navigate = useNavigate();
 
@@ -19,12 +21,15 @@ export default function MyBookings() {
 
   if (!currentUser) return null;
 
+  // Sort bookings by most recent first
   const sorted = [...myBookings].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  // Format date for display
   const fmtDate = d => d
     ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
+  // Generate reference number for booking
   const getRef = (booking, index) =>
     booking.id?.startsWith('#') ? booking.id : `#BK-${String(index + 1).padStart(3, '0')}`;
 
@@ -61,6 +66,7 @@ export default function MyBookings() {
         ) : (
           <div className="flex flex-col gap-0.5">
             {sorted.map((booking, index) => {
+              // Determine status and corresponding styles
               const status = (booking.status || 'pending').toLowerCase();
               const st = STATUS_STYLES[status] || STATUS_STYLES.pending;
               const ref = getRef(booking, index);
