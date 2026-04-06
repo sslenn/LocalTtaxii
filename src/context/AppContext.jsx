@@ -111,6 +111,7 @@ export function AppProvider({ children }) {
     return true;
   };
 
+  // Registration with basic validation and duplicate email check
   const register = (name, email, password, phone) => {
     if (users.find((u) => u.email === email)) return false;
     const u = {
@@ -127,11 +128,13 @@ export function AppProvider({ children }) {
     return true;
   };
 
+  // Logout
   const logout = () => {
     setCurrentUser(null);
     localStorage.removeItem("tt_current_user");
   };
 
+  // Profile update
   const updateProfile = (data) => {
     const updated = { ...currentUser, ...data };
     setCurrentUser(updated);
@@ -155,12 +158,14 @@ export function AppProvider({ children }) {
     return b;
   };
 
+  // Update booking status (admin action)
   const updateBookingStatus = (id, status) => {
     setBookings((prev) =>
       prev.map((b) => (b.id === id ? { ...b, status } : b)),
     );
   };
 
+  // Cancel booking (user action)
   const cancelBooking = (id) => {
     setBookings((prev) =>
       prev.map((b) =>
@@ -177,12 +182,14 @@ export function AppProvider({ children }) {
     setVehicles((prev) => [...prev, v]);
   };
 
+  // Update vehicle details (admin action)
   const updateVehicle = (id, data) => {
     setVehicles((prev) =>
       prev.map((v) => (v.id === id ? { ...v, ...data } : v)),
     );
   };
 
+  // Delete vehicle (admin action)
   const deleteVehicle = (id) => {
     setVehicles((prev) => prev.filter((v) => v.id !== id));
   };
@@ -192,6 +199,7 @@ export function AppProvider({ children }) {
     ? bookings.filter((b) => b.userId === currentUser.id)
     : [];
 
+  // Simple stats for admin dashboard
   const stats = {
     totalBookings: bookings.length,
     pendingBookings: bookings.filter((b) => b.status === "pending").length,
@@ -204,6 +212,7 @@ export function AppProvider({ children }) {
   };
 
   return (
+    // Provide all state and actions to children components
     <AppContext.Provider
       value={{
         currentUser,

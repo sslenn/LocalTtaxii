@@ -5,6 +5,7 @@ import { useApp } from '../context/AppContext';
 const TODAY = new Date().toISOString().split('T')[0];
 
 export default function Booking() {
+  // ── Context & State ─────────────────────────────────────────────────────
   const { currentUser, routes, vehicles, createBooking, toast } = useApp();
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,16 +14,20 @@ export default function Booking() {
     if (!currentUser) navigate('/login', { state: { from: '/booking' } });
   }, [currentUser]);
 
+  // filter out inactive routes and vehicles
   const activeRoutes   = routes.filter(r => r.active !== false);
   const activeVehicles = vehicles.filter(v => v.available !== false);
 
-  const prefill      = location.state || {};
-  const prefillRoute = activeRoutes.find(r => r.id === prefill.routeId);
+  // read route id from URL query param ?route=r1
+  const params       = new URLSearchParams(location.search);
+  const prefillId    = params.get('route');
+  const prefillRoute = activeRoutes.find(r => r.id === prefillId);
   const fromCities   = [...new Set(activeRoutes.map(r => r.from))];
 
+  // form state
   const [fromCity,   setFromCity]   = useState(prefillRoute?.from || fromCities[0] || '');
   const [toCity,     setToCity]     = useState(prefillRoute?.to   || '');
-  const [vehicleId,  setVehicleId]  = useState(prefill.vehicleId  || '');
+  const [vehicleId,  setVehicleId]  = useState('');
   const [date,       setDate]       = useState('');
   const [passengers, setPassengers] = useState(1);
   const [name,       setName]       = useState(currentUser?.name  || '');
@@ -35,26 +40,33 @@ export default function Booking() {
 
   const toOptions = activeRoutes.filter(r => r.from === fromCity).map(r => r.to);
 
+  // when fromCity changes, reset toCity — but preserve prefill on first render
+  const [didPrefill, setDidPrefill] = useState(!!prefillRoute);
   useEffect(() => {
+    if (didPrefill) { setDidPrefill(false); return; }
     const opts = activeRoutes.filter(r => r.from === fromCity).map(r => r.to);
     setToCity(opts[0] || '');
   }, [fromCity]);
 
+  // find selected route and vehicle objects for price lookup and summary
   const selectedRoute   = activeRoutes.find(r => r.from === fromCity && r.to === toCity);
   const selectedVehicle = activeVehicles.find(v => v.id === vehicleId);
   const price = selectedRoute && selectedVehicle
     ? (selectedRoute.prices?.[selectedVehicle.id] ?? 0)
     : 0;
 
+  // when route or vehicle changes, reset price and passengers
   const fmtDate = d => d
     ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
+  // form submission handler with validation
   function handleSubmit() {
     setError('');
     if (!fromCity || !toCity) return setError('Please select a valid route.');
     if (!vehicleId)           return setError('Please select a vehicle.');
     if (!date)                return setError('Please select a travel date.');
+    if (date < TODAY)         return setError('Travel date must be today or in the future.');
     if (passengers < 1)       return setError('At least 1 passenger required.');
     if (selectedVehicle?.seats && passengers > selectedVehicle.seats)
       return setError(`Max ${selectedVehicle.seats} passengers for this vehicle.`);
@@ -91,7 +103,7 @@ export default function Booking() {
   return (
     <div className="min-h-screen bg-[#111108] text-[#e8e0c8] font-serif">
 
-      {/* ── Header ── */}
+      {/* Header */}
       <section className="bg-[radial-gradient(ellipse_at_50%_0%,rgba(201,168,76,0.06)_0%,transparent_60%)] bg-[#111] border-b border-[#141414] py-16 px-8 mb-10">
         <div className="max-w-245 mx-auto">
           <p className="text-[#c9a84c] tracking-widest text-xs font-sans mb-3">RESERVE YOUR SEAT</p>
@@ -102,11 +114,11 @@ export default function Booking() {
         </div>
       </section>
 
-      {/* ── Body ── */}
+      {/* Body */}
       <div className="max-w-245 mx-auto px-6 pb-20">
         <div className="flex gap-7 items-start">
 
-          {/* ── Form column ── */}
+          {/* Form column */}
           <div className="flex-1 min-w-0">
 
             {/* STEP 1 */}
@@ -236,7 +248,7 @@ export default function Booking() {
               placeholder="Flight number, special requests..."
               value={notes}
               onChange={e => setNotes(e.target.value)}
-              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans resize-y min-h-[22] "
+              className="w-full bg-[#1a1908] border border-[#2a2810] text-[#e8e0c8] text-[13px] p-3 outline-none font-sans resize-y min-h-22"
             />
 
             {error && (
@@ -247,7 +259,7 @@ export default function Booking() {
 
           </div>
 
-          {/* ── Summary sidebar ── */}
+          {/* Summary sidebar */}
           <div className="w-58.75 shrink-0 bg-[#0d0c05] border border-[#1e1d08] p-6 sticky top-6">
             <p className="text-[15px] text-[#e8e0c8] font-serif font-normal mb-5">Booking Summary</p>
 
