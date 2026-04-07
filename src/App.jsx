@@ -21,6 +21,7 @@ import MyBookings from "./pages/MyBookings";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import NotFound from './pages/NotFound'
 
 import Dashboard from "./pages/admin/Dashboard";
 import AdminBookings from "./pages/admin/AdminBookings";
@@ -96,7 +97,7 @@ export default function App() {
             <Route path="users" element={<AdminUsers />} />
           </Route>
 
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />
