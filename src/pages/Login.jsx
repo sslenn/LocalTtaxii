@@ -106,6 +106,9 @@ export default function Login() {
         <div className="mt-4 px-4 py-3 bg-[#141210] border border-dashed border-[#2A2720] rounded text-[11px] text-[#8A8070] leading-[1.8]">
           <span className="text-[#C9A84C] font-semibold">Demo:</span>{' '}
           admin@localttaxi.com / admin123
+            <br />
+          <span className="text-[#C9A84C] font-semibold">Demo:</span>{' '}
+          user1@example.com / password123
         </div>
 
       </div>
