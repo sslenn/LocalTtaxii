@@ -16,18 +16,6 @@ export default function Booking() {
     if (!currentUser) navigate('/login', { state: { from: '/booking' } });
   }, [currentUser]);
 
-<<<<<<< HEAD
- // Filter out inactive routes and vehicles
-  const activeRoutes   = routes.filter(r => r.active !== false);
-  const activeVehicles = vehicles.filter(v => v.available !== false);
-
- // Prefill form if coming from a route/vehicle selection
-  const prefill      = location.state || {};
-  const prefillRoute = activeRoutes.find(r => r.id === prefill.routeId);
-  const fromCities   = [...new Set(activeRoutes.map(r => r.from))];
-
- // Initialize form state with prefill or defaults
-=======
   // filter out inactive routes and vehicles
   const activeRoutes   = routes.filter(r => r.active !== false);
   const activeVehicles = vehicles.filter(v => v.available !== false);
@@ -39,7 +27,6 @@ export default function Booking() {
   const fromCities   = [...new Set(activeRoutes.map(r => r.from))];
 
   // form state
->>>>>>> feature/ratana-Routes
   const [fromCity,   setFromCity]   = useState(prefillRoute?.from || fromCities[0] || '');
   const [toCity,     setToCity]     = useState(prefillRoute?.to   || '');
   const [vehicleId,  setVehicleId]  = useState('');
@@ -56,43 +43,29 @@ export default function Booking() {
  // Update destination options when fromCity changes
   const toOptions = activeRoutes.filter(r => r.from === fromCity).map(r => r.to);
 
-<<<<<<< HEAD
-  // Auto-select first available destination when fromCity changes
-=======
+
   // when fromCity changes, reset toCity — but preserve prefill on first render
   const [didPrefill, setDidPrefill] = useState(!!prefillRoute);
->>>>>>> feature/ratana-Routes
+
   useEffect(() => {
     if (didPrefill) { setDidPrefill(false); return; }
     const opts = activeRoutes.filter(r => r.from === fromCity).map(r => r.to);
     setToCity(opts[0] || '');
   }, [fromCity]);
 
-<<<<<<< HEAD
-  // Calculate price based on selected route and vehicle
-=======
+
   // find selected route and vehicle objects for price lookup and summary
->>>>>>> feature/ratana-Routes
+
   const selectedRoute   = activeRoutes.find(r => r.from === fromCity && r.to === toCity);
   const selectedVehicle = activeVehicles.find(v => v.id === vehicleId);
   const price = selectedRoute && selectedVehicle
     ? (selectedRoute.prices?.[selectedVehicle.id] ?? 0)
     : 0;
 
-<<<<<<< HEAD
-  // Helper to format date for summary display
-=======
-  // when route or vehicle changes, reset price and passengers
->>>>>>> feature/ratana-Routes
   const fmtDate = d => d
     ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
-<<<<<<< HEAD
-  // Form submission handler with validation
-=======
-  // form submission handler with validation
->>>>>>> feature/ratana-Routes
   function handleSubmit() {
     setError('');
     if (!fromCity || !toCity) return setError('Please select a valid route.');
