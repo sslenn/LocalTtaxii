@@ -28,8 +28,9 @@ export default function Toast() {
           from { opacity: 0; transform: translateX(40px); }
           to   { opacity: 1; transform: translateX(0); }
         }
+        // ease starts slow goes fast then slows down at the end, more natural for UI
         .animate-slideIn {
-          animation: slideIn 0.2s ease forwards;
+          animation: slideIn 0.2s ease forwards; 
         }
       `}</style>
     </div>

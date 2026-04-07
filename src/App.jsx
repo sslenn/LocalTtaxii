@@ -14,10 +14,27 @@ import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
+<<<<<<< HEAD
 import Dashboard from './pages/admin/Dashboard'
 import AdminBookings from './pages/admin/AdminBookings'
 import AdminVehicles from './pages/admin/AdminVehicles'
 import AdminUsers from './pages/admin/AdminUsers'
+=======
+import Home from "./pages/Home";
+import Fleet from "./pages/Fleet";
+import RoutesPage from "./pages/Routes";
+import Booking from "./pages/Booking";
+import MyBookings from "./pages/MyBookings";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import NotFound from './pages/NotFound'
+
+import Dashboard from "./pages/admin/Dashboard";
+import AdminBookings from "./pages/admin/AdminBookings";
+import AdminVehicles from "./pages/admin/AdminVehicles";
+import AdminUsers from "./pages/admin/AdminUsers";
+>>>>>>> feature/ratana-Routes
 
 // ── Layouts ──────────────────────────────────────────────────────────────────
 function ClientLayout({ children }) {
@@ -79,10 +96,18 @@ export default function App() {
             <RequireAdmin><AdminLayout><AdminUsers /></AdminLayout></RequireAdmin>
           } />
 
+<<<<<<< HEAD
           {/* 404 */}
           <Route path="*" element={<Navigate to="/" replace />} />
+=======
+          <Route path="*" element={<NotFound />} />
+>>>>>>> feature/ratana-Routes
         </Routes>
       </AppProvider>
     </BrowserRouter>
+<<<<<<< HEAD
   )
+=======
+  );
+>>>>>>> feature/ratana-Routes
 }
